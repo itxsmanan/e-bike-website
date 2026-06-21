@@ -1,0 +1,2582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کتابوں کی دولت | Kitabon Ki Dolat - Dolat Khan Kakar Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --midnight: #0A0E27;
+            --slate: #1A1F3A;
+            --navy: #2E3856;
+            --gold: #C9A962;
+            --gold-bright: #E8C574;
+            --accent: #D4664A;
+            --accent-light: #E88B6F;
+            --cream: #FFF8F0;
+            --text: #E8E9ED;
+            --text-dim: #A8AAB8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--midnight);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* EXTRAORDINARY 3D Book Opening Animation */
+        #bookSplash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0A0E27 0%, #1A1F3A 50%, #2E3856 100%);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeOutSplash 1s ease 5s forwards;
+        }
+        
+        @keyframes fadeOutSplash {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+        
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(201, 169, 98, 0.6);
+            border-radius: 50%;
+            animation: float-particle 8s ease-in-out infinite;
+        }
+        
+        .particle:nth-child(1) { width: 4px; height: 4px; top: 20%; left: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 6px; height: 6px; top: 40%; left: 60%; animation-delay: 1s; }
+        .particle:nth-child(3) { width: 3px; height: 3px; top: 70%; left: 30%; animation-delay: 2s; }
+        .particle:nth-child(4) { width: 5px; height: 5px; top: 60%; left: 80%; animation-delay: 1.5s; }
+        .particle:nth-child(5) { width: 4px; height: 4px; top: 30%; left: 70%; animation-delay: 0.5s; }
+        
+        @keyframes float-particle {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+            50% { transform: translateY(-100px) translateX(50px); opacity: 1; }
+        }
+        
+        .book-container-splash {
+            perspective: 2000px;
+            width: 500px;
+            height: 600px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        .book-3d {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: extraordinaryBookOpen 5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+        
+        @keyframes extraordinaryBookOpen {
+            0% { transform: rotateY(0deg) scale(0.8); }
+            15% { transform: rotateY(0deg) scale(1); }
+            30% { transform: rotateY(-5deg) scale(1.05); }
+            50% { transform: rotateY(-180deg) scale(1.2) translateZ(50px); }
+            70% { transform: rotateY(-180deg) scale(1.3) translateZ(80px); }
+            85% { transform: rotateY(-180deg) scale(1.5) translateZ(100px); }
+            100% { transform: rotateY(-180deg) scale(2) translateZ(150px); opacity: 0; }
+        }
+        
+        .book-spine {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 100%;
+            background: linear-gradient(90deg, #8B7355 0%, #6B5845 50%, #4B3825 100%);
+            transform: rotateY(-90deg) translateZ(-20px);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        
+        .book-cover-splash {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            backface-visibility: hidden;
+            background: linear-gradient(135deg, #C9A962 0%, #E8C574 50%, #C9A962 100%);
+            border: 5px solid #8B7355;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6), inset 0 2px 20px rgba(255,255,255,0.3);
+            transform: rotateY(0deg);
+        }
+        
+        .book-cover-splash::before {
+            content: '';
+            position: absolute;
+            inset: 20px;
+            border: 2px solid rgba(139, 115, 85, 0.4);
+            border-radius: 5px;
+        }
+        
+        .book-cover-splash::after {
+            content: '';
+            position: absolute;
+            inset: 30px;
+            border: 1px solid rgba(139, 115, 85, 0.3);
+            border-radius: 3px;
+        }
+        
+        .book-cover-splash h1 {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 4rem;
+            color: var(--midnight);
+            text-align: center;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.5), -2px -2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .book-cover-splash p {
+            font-size: 1.5rem;
+            color: var(--slate);
+            font-weight: 700;
+            letter-spacing: 4px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle-animation 2s ease-in-out infinite;
+        }
+        
+        .sparkle:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 25%; right: 15%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { bottom: 20%; left: 25%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { bottom: 30%; right: 20%; animation-delay: 1.5s; }
+        
+        @keyframes sparkle-animation {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        .book-pages {
+            position: absolute;
+            width: 98%;
+            height: 98%;
+            left: 1%;
+            top: 1%;
+            background: #FFF8F0;
+            transform: rotateY(180deg) translateZ(-10px);
+            border-radius: 8px;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.1);
+        }
+        
+        .book-pages p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--midnight);
+            text-align: center;
+            line-height: 1.8;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeInText 1s ease 2.5s forwards;
+        }
+        
+        @keyframes fadeInText {
+            to { opacity: 1; }
+        }
+        
+        .page-turn {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            right: 0;
+            top: 0;
+            background: linear-gradient(90deg, rgba(255,248,240,0.9) 0%, #FFF8F0 100%);
+            transform-origin: left;
+            animation: turnPage 3s ease 1s forwards;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+        }
+        
+        @keyframes turnPage {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(-180deg); }
+        }
+        
+        .loading-text {
+            position: absolute;
+            bottom: 80px;
+            font-size: 1.2rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        .loading-text::after {
+            content: '...';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .splash-quote {
+            position: absolute;
+            bottom: 150px;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            opacity: 0;
+            animation: fadeInQuote 1s ease 3.5s forwards;
+        }
+        
+        @keyframes fadeInQuote {
+            to { opacity: 1; }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        
+        .logo-urdu {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        
+        .logo-english {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--gold);
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 102, 74, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 102, 74, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 4%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(201, 169, 98, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 102, 74, 0.08) 0%, transparent 50%);
+            animation: bgShift 15s ease-in-out infinite;
+        }
+        
+        @keyframes bgShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+        }
+        
+        .hero-urdu {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        
+        .hero-tagline {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+        
+        /* Stats */
+        .stats {
+            background: linear-gradient(135deg, var(--slate) 0%, var(--navy) 100%);
+            padding: 3rem 4%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 6rem 4%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Books Grid */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .book-card {
+            background: var(--slate);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: var(--gold);
+        }
+        
+        .book-cover {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--slate) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .book-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .book-info {
+            padding: 1.5rem;
+        }
+        
+        .book-category {
+            color: var(--gold);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .book-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        
+        .book-author {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .book-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .view-details {
+            background: var(--gold);
+            color: var(--midnight);
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .view-details:hover {
+            background: var(--gold-bright);
+            transform: scale(1.05);
+        }
+        
+        /* Book Detail Modal */
+        .book-detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 5000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .book-detail-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: var(--slate);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--text);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            background: var(--accent);
+            transform: rotate(90deg);
+        }
+        
+        .book-detail-content {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 3rem;
+        }
+        
+        .book-detail-cover {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--midnight) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border: 2px solid rgba(201, 169, 98, 0.3);
+        }
+        
+        .book-detail-info h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        
+        .book-detail-author {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .book-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stars {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+        
+        .rating-count {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        
+        .book-description {
+            color: var(--text-dim);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+        
+        .book-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+        }
+        
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .spec-label {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        
+        .spec-value {
+            color: var(--text);
+            font-weight: 600;
+        }
+        
+        .purchase-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .purchase-card {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .purchase-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+        
+        .purchase-type {
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .purchase-icon {
+            font-size: 3rem;
+            margin: 1rem 0;
+        }
+        
+        .purchase-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        
+        .purchase-features {
+            list-style: none;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .purchase-features li {
+            padding: 0.3rem 0;
+        }
+        
+        .btn-purchase {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-ebook {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+            color: var(--midnight);
+        }
+        
+        .btn-print {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+        }
+        
+        .btn-purchase:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Audio Books Section */
+        .audiobook-player {
+            background: var(--slate);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .audiobook-player:hover {
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .audiobook-cover {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--midnight) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+        
+        .audiobook-info {
+            flex-grow: 1;
+        }
+        
+        .audiobook-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        
+        .audiobook-narrator {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+        
+        .audiobook-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .btn-play {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gold);
+            border: none;
+            color: var(--midnight);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-play:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(201, 169, 98, 0.5);
+        }
+        
+        .audiobook-duration {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: var(--slate);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-desc {
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        /* Celebrity Events Gallery Section */
+        .events-section {
+            padding: 6rem 4%;
+            background: linear-gradient(135deg, var(--slate) 0%, var(--midnight) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .events-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(201, 169, 98, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(212, 102, 74, 0.05) 0%, transparent 50%);
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .event-card {
+            background: var(--slate);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            border-color: var(--gold);
+        }
+        
+        .event-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--slate) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .event-date-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: var(--midnight);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .event-info {
+            padding: 2rem;
+        }
+        
+        .event-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        
+        .event-celebrity {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .celebrity-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .celebrity-info h4 {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .celebrity-title {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+        
+        .event-quote {
+            color: var(--text-dim);
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--gold);
+            padding-left: 1rem;
+        }
+        
+        .view-event-details {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .view-event-details:hover {
+            background: var(--gold);
+            color: var(--midnight);
+        }
+        
+        /* Event Detail Modal */
+        .event-detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 5000;
+            overflow-y: auto;
+        }
+        
+        .event-detail-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: var(--slate);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+        }
+        
+        .event-detail-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .event-detail-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .event-detail-date {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+        }
+        
+        .event-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--midnight) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 2px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            border-color: var(--gold);
+            transform: scale(1.05);
+        }
+        
+        .event-testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .testimonial-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+        
+        .testimonial-quote {
+            font-style: italic;
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+
+        /* Subscription Section */
+        .subscription-section {
+            background: linear-gradient(135deg, var(--slate) 0%, var(--midnight) 100%);
+            padding: 6rem 4%;
+            border-top: 2px solid var(--gold);
+        }
+        
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .plan-card {
+            background: var(--slate);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .plan-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(201, 169, 98, 0.3);
+        }
+        
+        .plan-popular {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, var(--slate) 0%, rgba(201, 169, 98, 0.1) 100%);
+        }
+        
+        .plan-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gold);
+            color: var(--midnight);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .plan-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        
+        .plan-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price-amount {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .plan-save {
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .plan-features li {
+            padding: 0.75rem 0;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .plan-features li::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .btn-plan {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-plan-gold {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+            color: var(--midnight);
+        }
+        
+        .btn-plan-accent {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+        }
+        
+        .btn-plan:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        /* Payment Modal */
+        .payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 6000;
+            overflow-y: auto;
+        }
+        
+        .payment-container {
+            max-width: 600px;
+            margin: 5rem auto;
+            background: var(--slate);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+        }
+        
+        .payment-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .payment-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .payment-methods {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .payment-method {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--gold);
+        }
+        
+        .payment-method h3 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .payment-details {
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+        
+        .payment-details strong {
+            color: var(--text);
+            display: block;
+            margin-top: 0.5rem;
+        }
+        
+        .btn-whatsapp {
+            width: 100%;
+            padding: 1.2rem;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #20BA5A;
+            transform: scale(1.02);
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            transition: all 0.3s ease;
+            z-index: 999;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7);
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--midnight);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 4% 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-about h3 {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-about p {
+            color: var(--text-dim);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--midnight);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h4 {
+            color: var(--text);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: var(--text-dim);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .book-detail-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .purchase-options {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .book-container-splash {
+                width: 350px;
+                height: 450px;
+            }
+            
+            .book-cover-splash h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-urdu {
+                font-size: 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- EXTRAORDINARY 3D Book Opening Animation -->
+    <div id="bookSplash">
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="book-container-splash">
+            <div class="book-3d">
+                <div class="book-spine"></div>
+                
+                <div class="book-cover-splash">
+                    <div class="sparkle"></div>
+                    <div class="sparkle"></div>
+                    <div class="sparkle"></div>
+                    <div class="sparkle"></div>
+                    <h1>کتابوں کی دولت</h1>
+                    <p>KITABON KI DOLAT</p>
+                </div>
+                
+                <div class="book-pages">
+                    <p>"True wealth lies not in gold,<br>but in the pages of books..."</p>
+                </div>
+                
+                <div class="page-turn"></div>
+            </div>
+        </div>
+        
+        <div class="splash-quote">اصلی دولت کتابوں میں ہے</div>
+        <div class="loading-text">Opening your library</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo-urdu">کتابوں کی دولت</div>
+                <div class="logo-english">KITABON KI DOLAT</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#books">Books</a></li>
+                <li><a href="#audiobooks">Audio Books</a></li>
+                <li><a href="#events">Celebrity Events</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#subscriptions" class="btn-primary">Subscribe</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float" onclick="orderViaWhatsApp()">
+        💬
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-urdu">اصلی دولت کتابوں میں ہے</div>
+            <h1>Kitabon Ki Dolat</h1>
+            <p class="hero-tagline">"Where Books Are True Wealth"</p>
+            <p class="hero-subtitle">Welcome to Pakistan's premier digital publishing platform by Dolat Khan Kakar. Discover, read, and own books that transform lives. Your journey into knowledge, wisdom, and fortune starts here.</p>
+            <div class="hero-buttons">
+                <a href="#books" class="btn-primary">Explore Collection</a>
+                <a href="#audiobooks" class="btn-secondary">🎧 Listen to Audiobooks</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">100+</span>
+                <span class="stat-label">Published Books</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">50K+</span>
+                <span class="stat-label">Happy Readers</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2000+</span>
+                <span class="stat-label">E-Books Available</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Library Access</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Books -->
+    <section class="section" id="books">
+        <div class="section-header">
+            <div class="section-label">Featured Collection</div>
+            <h2 class="section-title">Books by Dolat Khan Kakar</h2>
+            <p class="section-subtitle">Discover stories, wisdom, and knowledge from one of Pakistan's finest authors</p>
+        </div>
+
+        <div class="books-grid">
+            <div class="book-card" onclick="openBookDetail(1)">
+                <div class="book-cover">
+                    <span class="book-badge">Bestseller</span>
+                    📖
+                </div>
+                <div class="book-info">
+                    <div class="book-category">Fiction • Thriller</div>
+                    <h3 class="book-title">The Silent Echo</h3>
+                    <p class="book-author">by Dolat Khan Kakar</p>
+                    <div class="book-price">
+                        <span class="price">Rs. 1,299</span>
+                        <button class="view-details">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card" onclick="openBookDetail(2)">
+                <div class="book-cover">
+                    <span class="book-badge">New Release</span>
+                    📚
+                </div>
+                <div class="book-info">
+                    <div class="book-category">Self-Help</div>
+                    <h3 class="book-title">Mindful Leadership</h3>
+                    <p class="book-author">by Dolat Khan Kakar</p>
+                    <div class="book-price">
+                        <span class="price">Rs. 1,599</span>
+                        <button class="view-details">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card" onclick="openBookDetail(3)">
+                <div class="book-cover">📕</div>
+                <div class="book-info">
+                    <div class="book-category">Poetry • Urdu</div>
+                    <h3 class="book-title">Khwahishon Ki Baarish</h3>
+                    <p class="book-author">by Dolat Khan Kakar</p>
+                    <div class="book-price">
+                        <span class="price">Rs. 999</span>
+                        <button class="view-details">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card" onclick="openBookDetail(4)">
+                <div class="book-cover">📗</div>
+                <div class="book-info">
+                    <div class="book-category">Business • Finance</div>
+                    <h3 class="book-title">Building Fortune</h3>
+                    <p class="book-author">by Dolat Khan Kakar</p>
+                    <div class="book-price">
+                        <span class="price">Rs. 1,799</span>
+                        <button class="view-details">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audiobooks Section -->
+    <section class="section" id="audiobooks" style="background: var(--slate); margin: 0; max-width: 100%;">
+        <div class="section-header">
+            <div class="section-label">Listen Anywhere</div>
+            <h2 class="section-title">Audiobook Collection</h2>
+            <p class="section-subtitle">Professional narrations of your favorite books. Perfect for multitasking.</p>
+        </div>
+
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <div class="audiobook-player">
+                <div class="audiobook-cover">🎧</div>
+                <div class="audiobook-info">
+                    <h3 class="audiobook-title">The Silent Echo</h3>
+                    <p class="audiobook-narrator">Narrated by Ahmed Ali • 8 hours 32 minutes</p>
+                    <div class="audiobook-controls">
+                        <button class="btn-play">▶</button>
+                        <span class="audiobook-duration">Sample available</span>
+                    </div>
+                </div>
+                <div class="book-price">
+                    <span class="price">Rs. 899</span>
+                    <button class="view-details" onclick="event.stopPropagation(); showPaymentModal('The Silent Echo Audiobook', 899)">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="audiobook-player">
+                <div class="audiobook-cover">🎙️</div>
+                <div class="audiobook-info">
+                    <h3 class="audiobook-title">Mindful Leadership</h3>
+                    <p class="audiobook-narrator">Narrated by Sara Khan • 6 hours 15 minutes</p>
+                    <div class="audiobook-controls">
+                        <button class="btn-play">▶</button>
+                        <span class="audiobook-duration">Sample available</span>
+                    </div>
+                </div>
+                <div class="book-price">
+                    <span class="price">Rs. 1,199</span>
+                    <button class="view-details" onclick="event.stopPropagation(); showPaymentModal('Mindful Leadership Audiobook', 1199)">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- E-Library Features -->
+    <section class="section" id="library">
+        <div class="section-header">
+            <div class="section-label">Digital Library</div>
+            <h2 class="section-title">Your Personal E-Library</h2>
+            <p class="section-subtitle">Everything you need for the perfect reading experience</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Multi-Device Sync</h3>
+                <p class="feature-desc">Read on phone, tablet, or computer. Your progress syncs automatically across all devices.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌙</div>
+                <h3 class="feature-title">Night Mode</h3>
+                <p class="feature-desc">Eye-friendly dark mode with customizable fonts and spacing for comfortable reading anytime.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">✏️</div>
+                <h3 class="feature-title">Smart Annotations</h3>
+                <p class="feature-desc">Highlight passages, make notes, and bookmark pages. Export your reading notes anytime.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Reading Analytics</h3>
+                <p class="feature-desc">Track your reading habits, set goals, and earn achievements as you complete books.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title">Reader Community</h3>
+                <p class="feature-desc">Join discussions, share reviews, and connect with fellow readers who love the same books.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎁</div>
+                <h3 class="feature-title">Gift Books</h3>
+                <p class="feature-desc">Send books as gifts with personalized messages. Perfect for birthdays and special occasions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CELEBRITY EVENTS GALLERY SECTION -->
+    <section class="events-section" id="events">
+        <div class="section">
+            <div class="section-header">
+                <div class="section-label">Literary Events</div>
+                <h2 class="section-title">Celebrity Book Launches</h2>
+                <p class="section-subtitle">Presenting books to Pakistan's most influential personalities</p>
+            </div>
+
+            <div class="events-grid">
+                <!-- Event 1 -->
+                <div class="event-card" onclick="openEventDetail(1)">
+                    <div class="event-image">
+                        <span class="event-date-badge">Dec 15, 2025</span>
+                        📸
+                    </div>
+                    <div class="event-info">
+                        <h3 class="event-title">Supreme Court Book Launch</h3>
+                        <div class="event-celebrity">
+                            <div class="celebrity-avatar">👨‍⚖️</div>
+                            <div class="celebrity-info">
+                                <h4>Justice Qazi Faez Isa</h4>
+                                <p class="celebrity-title">Chief Justice of Pakistan</p>
+                            </div>
+                        </div>
+                        <p class="event-quote">"This book brilliantly captures the essence of Pakistani jurisprudence..."</p>
+                        <button class="view-event-details">View Full Event</button>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="event-card" onclick="openEventDetail(2)">
+                    <div class="event-image">
+                        <span class="event-date-badge">Nov 22, 2025</span>
+                        🎬
+                    </div>
+                    <div class="event-info">
+                        <h3 class="event-title">Bollywood Celebrity Meet</h3>
+                        <div class="event-celebrity">
+                            <div class="celebrity-avatar">🌟</div>
+                            <div class="celebrity-info">
+                                <h4>Mahira Khan</h4>
+                                <p class="celebrity-title">Leading Pakistani Actor</p>
+                            </div>
+                        </div>
+                        <p class="event-quote">"Dolat's storytelling transported me to another world. A must-read!"</p>
+                        <button class="view-event-details">View Full Event</button>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="event-card" onclick="openEventDetail(3)">
+                    <div class="event-image">
+                        <span class="event-date-badge">Oct 10, 2025</span>
+                        🏛️
+                    </div>
+                    <div class="event-info">
+                        <h3 class="event-title">Governor House Ceremony</h3>
+                        <div class="event-celebrity">
+                            <div class="celebrity-avatar">🎖️</div>
+                            <div class="celebrity-info">
+                                <h4>Governor Punjab</h4>
+                                <p class="celebrity-title">Government Official</p>
+                            </div>
+                        </div>
+                        <p class="event-quote">"An exceptional contribution to Pakistani literature..."</p>
+                        <button class="view-event-details">View Full Event</button>
+                    </div>
+                </div>
+
+                <!-- Event 4 -->
+                <div class="event-card" onclick="openEventDetail(4)">
+                    <div class="event-image">
+                        <span class="event-date-badge">Sep 5, 2025</span>
+                        ✍️
+                    </div>
+                    <div class="event-info">
+                        <h3 class="event-title">Authors Convention</h3>
+                        <div class="event-celebrity">
+                            <div class="celebrity-avatar">📚</div>
+                            <div class="celebrity-info">
+                                <h4>Intizar Hussain</h4>
+                                <p class="celebrity-title">Renowned Pakistani Author</p>
+                            </div>
+                        </div>
+                        <p class="event-quote">"Dolat Khan Kakar represents the new generation of Pakistani writers..."</p>
+                        <button class="view-event-details">View Full Event</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about" style="background: var(--slate); margin: 0; max-width: 100%;">
+        <div style="max-width: 1000px; margin: 0 auto; text-align: center; padding: 0 2rem;">
+            <div class="section-label">The Author</div>
+            <h2 class="section-title">Dolat Khan Kakar</h2>
+            <p style="font-size: 1.3rem; line-height: 1.9; color: var(--text-dim); margin: 2rem 0;">
+                Dolat Khan Kakar is a celebrated Pakistani author, publisher, and advocate for literacy. His name, meaning "wealth" in Urdu, perfectly embodies his philosophy: <em style="color: var(--gold);">true richness comes not from material possessions, but from the knowledge and wisdom found in books.</em>
+            </p>
+            <p style="font-size: 1.3rem; line-height: 1.9; color: var(--text-dim); margin: 2rem 0;">
+                With over 100 published works spanning fiction, non-fiction, poetry, and self-help, Dolat has touched the lives of 50,000+ readers across Pakistan and beyond. His mission is simple: make quality literature accessible to every Pakistani household.
+            </p>
+        </div>
+    </section>
+
+    <!-- Subscription Plans -->
+    <section class="subscription-section" id="subscriptions">
+        <div class="section-header">
+            <div class="section-label">Premium Access</div>
+            <h2 class="section-title">Unlimited Reading Plans</h2>
+            <p class="section-subtitle">Get access to everything above with our affordable membership plans</p>
+        </div>
+
+        <div class="plans-grid">
+            <div class="plan-card">
+                <h3 class="plan-name">Monthly</h3>
+                <div class="plan-price">
+                    <span class="price-amount">Rs. 499</span>
+                    <span style="color: var(--text-dim);">/month</span>
+                </div>
+                <p class="plan-save">Perfect for trial</p>
+                <ul class="plan-features">
+                    <li>Full E-Library access</li>
+                    <li>Unlimited book downloads</li>
+                    <li>Audio book streaming</li>
+                    <li>Mobile & tablet apps</li>
+                    <li>Cancel anytime</li>
+                </ul>
+                <button class="btn-plan btn-plan-accent" onclick="showPaymentModal('Monthly Subscription', 499)">Start Free Trial</button>
+            </div>
+
+            <div class="plan-card">
+                <h3 class="plan-name">Quarterly</h3>
+                <div class="plan-price">
+                    <span class="price-amount">Rs. 1,299</span>
+                    <span style="color: var(--text-dim);">/3 months</span>
+                </div>
+                <p class="plan-save">Save 13% • Rs. 433/month</p>
+                <ul class="plan-features">
+                    <li>Everything in Monthly</li>
+                    <li>Priority support</li>
+                    <li>Early book access</li>
+                    <li>Exclusive Q&As</li>
+                    <li>10% off print books</li>
+                </ul>
+                <button class="btn-plan btn-plan-accent" onclick="showPaymentModal('Quarterly Subscription', 1299)">Subscribe Now</button>
+            </div>
+
+            <div class="plan-card plan-popular">
+                <span class="plan-badge">Most Popular</span>
+                <h3 class="plan-name">Half-Yearly</h3>
+                <div class="plan-price">
+                    <span class="price-amount">Rs. 2,399</span>
+                    <span style="color: var(--text-dim);">/6 months</span>
+                </div>
+                <p class="plan-save">Save 20% • Rs. 400/month</p>
+                <ul class="plan-features">
+                    <li>Everything in Quarterly</li>
+                    <li>1 signed paperback free</li>
+                    <li>Private community access</li>
+                    <li>Reading analytics</li>
+                    <li>20% off print books</li>
+                </ul>
+                <button class="btn-plan btn-plan-gold" onclick="showPaymentModal('Half-Yearly Subscription', 2399)">Best Value</button>
+            </div>
+
+            <div class="plan-card">
+                <h3 class="plan-name">9-Month Plan</h3>
+                <div class="plan-price">
+                    <span class="price-amount">Rs. 3,299</span>
+                    <span style="color: var(--text-dim);">/9 months</span>
+                </div>
+                <p class="plan-save">Save 26% • Rs. 367/month</p>
+                <ul class="plan-features">
+                    <li>Everything in Half-Yearly</li>
+                    <li>2 signed books included</li>
+                    <li>Virtual author meetups</li>
+                    <li>Gift 1 month to friend</li>
+                    <li>25% off print books</li>
+                </ul>
+                <button class="btn-plan btn-plan-accent" onclick="showPaymentModal('9-Month Subscription', 3299)">Subscribe Now</button>
+            </div>
+
+            <div class="plan-card">
+                <span class="plan-badge">Best Deal</span>
+                <h3 class="plan-name">Annual</h3>
+                <div class="plan-price">
+                    <span class="price-amount">Rs. 3,999</span>
+                    <span style="color: var(--text-dim);">/year</span>
+                </div>
+                <p class="plan-save">Save 33% • Rs. 333/month</p>
+                <ul class="plan-features">
+                    <li>Everything in 9-Month</li>
+                    <li>3 signed books + merch</li>
+                    <li>Lifetime print discounts</li>
+                    <li>Name in acknowledgments</li>
+                    <li>Annual gala invite</li>
+                </ul>
+                <button class="btn-plan btn-plan-gold" onclick="showPaymentModal('Annual Subscription', 3999)">Join Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>کتابوں کی دولت</h3>
+                <p>Founded by Dolat Khan Kakar, Pakistan's premier platform for quality literature. Our mission: make books accessible to every Pakistani household.</p>
+                <div class="social-links">
+                    <a href="#">📘</a>
+                    <a href="#">📸</a>
+                    <a href="#">🐦</a>
+                    <a href="#">💼</a>
+                    <a href="#">📹</a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#books">All Books</a></li>
+                    <li><a href="#audiobooks">Audiobooks</a></li>
+                    <li><a href="#events">Celebrity Events</a></li>
+                    <li><a href="#">New Releases</a></li>
+                    <li><a href="#">Bestsellers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Dolat</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Kitabon Ki Dolat. All rights reserved. Designed with ❤️ by Dolat Khan Kakar for book lovers across Pakistan.</p>
+        </div>
+    </footer>
+
+    <!-- Book Detail Modal -->
+    <div id="bookDetailModal" class="book-detail-modal">
+        <div class="book-detail-container">
+            <span class="close-modal" onclick="closeBookDetail()">×</span>
+            <div class="book-detail-content" id="bookDetailContent"></div>
+        </div>
+    </div>
+
+    <!-- Event Detail Modal -->
+    <div id="eventDetailModal" class="event-detail-modal"></div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="payment-modal">
+        <div class="payment-container">
+            <span class="close-modal" onclick="closePaymentModal()">×</span>
+            <div class="payment-header">
+                <h2 class="payment-title">Complete Your Purchase</h2>
+                <p style="color: var(--text-dim); margin-top: 0.5rem;" id="paymentItemName"></p>
+            </div>
+            
+            <div class="payment-methods">
+                <div class="payment-method">
+                    <h3>💳 EasyPaisa</h3>
+                    <div class="payment-details">
+                        <p>Send payment to:</p>
+                        <strong>03XX-XXXXXXX</strong>
+                        <strong>Name: Dolat Khan Kakar</strong>
+                        <p style="margin-top: 1rem; font-size: 0.9rem;">After payment, send screenshot via WhatsApp</p>
+                    </div>
+                </div>
+
+                <div class="payment-method">
+                    <h3>🏦 Bank Transfer</h3>
+                    <div class="payment-details">
+                        <p>Transfer to:</p>
+                        <strong>Bank Alfalah</strong>
+                        <strong>Account: XXXXXXXXXXXX</strong>
+                        <strong>Title: Dolat Khan Kakar</strong>
+                        <p style="margin-top: 1rem; font-size: 0.9rem;">Send payment slip via WhatsApp</p>
+                    </div>
+                </div>
+
+                <div class="payment-method">
+                    <h3>💵 Cash on Delivery</h3>
+                    <div class="payment-details">
+                        <p>Available in major cities:</p>
+                        <strong>Lahore • Karachi • Islamabad</strong>
+                        <p style="margin-top: 1rem; font-size: 0.9rem;">Pay when you receive your order</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-whatsapp" onclick="confirmOrderViaWhatsApp()">
+                💬 Confirm Order via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Remove splash after animation
+        setTimeout(() => {
+            document.getElementById('bookSplash').style.display = 'none';
+        }, 5500);
+
+        // Book data
+        const books = {
+            1: {
+                title: "The Silent Echo",
+                author: "Dolat Khan Kakar",
+                category: "Fiction • Thriller",
+                cover: "📖",
+                rating: 4.8,
+                reviews: 1247,
+                description: "A gripping psychological thriller set in the heart of Lahore. When a renowned psychiatrist begins hearing echoes of conversations that haven't happened yet, he must unravel a conspiracy that threatens to destroy everything he holds dear. A masterfully crafted tale of suspense, identity, and the power of the human mind.",
+                pages: 384,
+                language: "English",
+                isbn: "978-969-XXXXX-1",
+                publisher: "Kitabon Ki Dolat Publishing",
+                published: "2025",
+                ebookPrice: 899,
+                printPrice: 1299
+            },
+            2: {
+                title: "Mindful Leadership",
+                author: "Dolat Khan Kakar",
+                category: "Self-Help • Business",
+                cover: "📚",
+                rating: 4.9,
+                reviews: 892,
+                description: "Transform your leadership style with ancient wisdom and modern psychology. Dolat Khan Kakar draws from years of experience and research to present a revolutionary approach to leadership that emphasizes mindfulness, emotional intelligence, and authentic connection. Perfect for CEOs, managers, and anyone looking to lead with purpose.",
+                pages: 312,
+                language: "English",
+                isbn: "978-969-XXXXX-2",
+                publisher: "Kitabon Ki Dolat Publishing",
+                published: "2026",
+                ebookPrice: 1199,
+                printPrice: 1599
+            },
+            3: {
+                title: "Khwahishon Ki Baarish",
+                author: "Dolat Khan Kakar",
+                category: "Poetry • Urdu Literature",
+                cover: "📕",
+                rating: 5.0,
+                reviews: 2156,
+                description: "A beautiful collection of Urdu poetry that captures the essence of longing, love, hope, and the human experience. Dolat Khan Kakar's verses flow like rain, each poem a droplet of emotion that resonates with the soul. Winner of the Pakistan Literary Award 2025.",
+                pages: 256,
+                language: "Urdu",
+                isbn: "978-969-XXXXX-3",
+                publisher: "Kitabon Ki Dolat Publishing",
+                published: "2025",
+                ebookPrice: 699,
+                printPrice: 999
+            },
+            4: {
+                title: "Building Fortune",
+                author: "Dolat Khan Kakar",
+                category: "Business • Finance",
+                cover: "📗",
+                rating: 4.7,
+                reviews: 634,
+                description: "A comprehensive guide to building wealth in Pakistan's evolving economy. From investment strategies to entrepreneurship, from saving habits to creating multiple income streams, this book covers everything you need to know about achieving financial independence. Includes real case studies from Pakistani success stories.",
+                pages: 428,
+                language: "English",
+                isbn: "978-969-XXXXX-4",
+                publisher: "Kitabon Ki Dolat Publishing",
+                published: "2026",
+                ebookPrice: 1399,
+                printPrice: 1799
+            }
+        };
+
+        // Event data
+        const events = {
+            1: {
+                title: "Supreme Court Book Launch",
+                date: "December 15, 2025",
+                location: "Supreme Court of Pakistan, Islamabad",
+                description: "A momentous occasion where 'The Silent Echo' was presented to the Chief Justice of Pakistan. The event saw attendance from senior judges, legal scholars, and members of the bar.",
+                testimonials: [
+                    {
+                        name: "Justice Qazi Faez Isa",
+                        role: "Chief Justice of Pakistan",
+                        avatar: "👨‍⚖️",
+                        quote: "This book brilliantly captures the essence of Pakistani jurisprudence and presents complex legal concepts through an engaging narrative. Dolat Khan Kakar has done remarkable work in making law accessible to the common reader."
+                    },
+                    {
+                        name: "Justice Ayesha Malik",
+                        role: "Supreme Court Judge",
+                        avatar: "👩‍⚖️",
+                        quote: "An important contribution to legal literature in Pakistan. The author's deep understanding of our legal system shines through every chapter."
+                    },
+                    {
+                        name: "Hamid Khan",
+                        role: "Senior Advocate Supreme Court",
+                        avatar: "⚖️",
+                        quote: "Finally, a book that bridges the gap between legal academia and public understanding. Highly recommended for law students and practitioners alike."
+                    }
+                ]
+            },
+            2: {
+                title: "Bollywood Celebrity Meet",
+                date: "November 22, 2025",
+                location: "Pearl Continental Hotel, Karachi",
+                description: "An exclusive evening where leading Pakistani celebrities received signed copies of 'Mindful Leadership'. The event featured panel discussions on literature's role in shaping society.",
+                testimonials: [
+                    {
+                        name: "Mahira Khan",
+                        role: "Leading Actor",
+                        avatar: "🌟",
+                        quote: "Dolat's storytelling transported me to another world. His characters feel so real, so Pakistani, yet so universal. A must-read for anyone who loves good literature."
+                    },
+                    {
+                        name: "Fawad Khan",
+                        role: "Actor & Producer",
+                        avatar: "🎭",
+                        quote: "As someone who appreciates good narratives, I was blown away by the depth and authenticity of this work. Dolat has given Pakistan a literary treasure."
+                    },
+                    {
+                        name: "Saba Qamar",
+                        role: "Acclaimed Actress",
+                        avatar: "✨",
+                        quote: "I couldn't put this book down! The emotional depth and cultural authenticity are remarkable. Every Pakistani should read this."
+                    }
+                ]
+            },
+            3: {
+                title: "Governor House Ceremony",
+                date: "October 10, 2025",
+                location: "Governor House, Lahore",
+                description: "A prestigious ceremony attended by government officials, bureaucrats, and prominent business leaders. The event celebrated Pakistani literature and its contribution to national discourse.",
+                testimonials: [
+                    {
+                        name: "Governor Punjab",
+                        role: "Chief Guest",
+                        avatar: "🎖️",
+                        quote: "An exceptional contribution to Pakistani literature. This book represents the intellectual prowess of our young generation and should be in every library."
+                    },
+                    {
+                        name: "Secretary Education",
+                        role: "Government of Punjab",
+                        avatar: "📋",
+                        quote: "We are considering including this book in our recommended reading list for colleges. It perfectly encapsulates contemporary Pakistani thought."
+                    }
+                ]
+            },
+            4: {
+                title: "Authors Convention",
+                date: "September 5, 2025",
+                location: "National Library, Islamabad",
+                description: "Pakistan's literary community gathered to celebrate the release of 'Khwahishon Ki Baarish'. Fellow authors, poets, and literary critics engaged in meaningful discussions about the state of Urdu literature.",
+                testimonials: [
+                    {
+                        name: "Intizar Hussain",
+                        role: "Renowned Author",
+                        avatar: "📚",
+                        quote: "Dolat Khan Kakar represents the new generation of Pakistani writers who are unafraid to push boundaries while staying rooted in our rich literary tradition."
+                    },
+                    {
+                        name: "Kishwar Naheed",
+                        role: "Poet & Feminist Icon",
+                        avatar: "✍️",
+                        quote: "Beautiful poetry that speaks to the soul. Dolat's verses carry both depth and accessibility - a rare combination in contemporary Urdu poetry."
+                    }
+                ]
+            }
+        };
+
+        // Global variables for payment
+        let currentItem = '';
+        let currentPrice = 0;
+
+        // Open book detail
+        function openBookDetail(bookId) {
+            const book = books[bookId];
+            const modal = document.getElementById('bookDetailModal');
+            const content = document.getElementById('bookDetailContent');
+            
+            content.innerHTML = `
+                <div class="book-detail-cover">${book.cover}</div>
+                <div class="book-detail-info">
+                    <h2>${book.title}</h2>
+                    <p class="book-detail-author">by ${book.author}</p>
+                    <div class="book-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-count">${book.rating} (${book.reviews} reviews)</span>
+                    </div>
+                    <p class="book-description">${book.description}</p>
+                    
+                    <div class="book-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Pages</span>
+                            <span class="spec-value">${book.pages}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Language</span>
+                            <span class="spec-value">${book.language}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">ISBN</span>
+                            <span class="spec-value">${book.isbn}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Published</span>
+                            <span class="spec-value">${book.published}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="purchase-options">
+                        <div class="purchase-card">
+                            <div class="purchase-type">E-Book</div>
+                            <div class="purchase-icon">📱</div>
+                            <div class="purchase-price">Rs. ${book.ebookPrice}</div>
+                            <ul class="purchase-features">
+                                <li>Instant download</li>
+                                <li>Read on any device</li>
+                                <li>Searchable text</li>
+                                <li>Lifetime access</li>
+                            </ul>
+                            <button class="btn-purchase btn-ebook" onclick="showPaymentModal('${book.title} (E-Book)', ${book.ebookPrice})">Buy E-Book</button>
+                        </div>
+                        
+                        <div class="purchase-card">
+                            <div class="purchase-type">Print Book</div>
+                            <div class="purchase-icon">📚</div>
+                            <div class="purchase-price">Rs. ${book.printPrice}</div>
+                            <ul class="purchase-features">
+                                <li>Premium quality paper</li>
+                                <li>Beautiful binding</li>
+                                <li>5-7 days delivery</li>
+                                <li>Free bookmark</li>
+                            </ul>
+                            <button class="btn-purchase btn-print" onclick="showPaymentModal('${book.title} (Print)', ${book.printPrice})">Order Print</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBookDetail() {
+            document.getElementById('bookDetailModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Open event detail
+        function openEventDetail(eventId) {
+            const event = events[eventId];
+            const modal = document.getElementById('eventDetailModal');
+            
+            let testimonialHTML = '';
+            event.testimonials.forEach(t => {
+                testimonialHTML += `
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">${t.avatar}</div>
+                            <div>
+                                <div class="testimonial-name">${t.name}</div>
+                                <div class="testimonial-role">${t.role}</div>
+                            </div>
+                        </div>
+                        <p class="testimonial-quote">"${t.quote}"</p>
+                    </div>
+                `;
+            });
+            
+            modal.innerHTML = `
+                <div class="event-detail-container">
+                    <span class="close-modal" onclick="closeEventDetail()">×</span>
+                    <div class="event-detail-header">
+                        <h2 class="event-detail-title">${event.title}</h2>
+                        <p class="event-detail-date">${event.date} • ${event.location}</p>
+                    </div>
+                    
+                    <p style="color: var(--text-dim); font-size: 1.2rem; line-height: 1.8; text-align: center; margin-bottom: 3rem;">
+                        ${event.description}
+                    </p>
+                    
+                    <h3 style="color: var(--gold); font-size: 2rem; margin-bottom: 2rem; text-align: center;">Event Gallery</h3>
+                    <div class="event-gallery">
+                        <div class="gallery-item">📸</div>
+                        <div class="gallery-item">📷</div>
+                        <div class="gallery-item">🖼️</div>
+                        <div class="gallery-item">🎯</div>
+                        <div class="gallery-item">🌟</div>
+                        <div class="gallery-item">📚</div>
+                    </div>
+                    
+                    <h3 style="color: var(--gold); font-size: 2rem; margin: 3rem 0 2rem; text-align: center;">What They Said</h3>
+                    <div class="event-testimonials">
+                        ${testimonialHTML}
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEventDetail() {
+            document.getElementById('eventDetailModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Payment Modal Functions
+        function showPaymentModal(itemName, price) {
+            currentItem = itemName;
+            currentPrice = price;
+            document.getElementById('paymentItemName').textContent = itemName + ' - Rs. ' + price;
+            document.getElementById('paymentModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function confirmOrderViaWhatsApp() {
+            const phoneNumber = "923XXXXXXXXX"; // REPLACE WITH YOUR NUMBER
+            const message = encodeURIComponent(`السلام علیکم!\n\nI want to order:\n${currentItem}\nPrice: Rs. ${currentPrice}\n\nPlease confirm my order.`);
+            window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+        }
+
+        // WhatsApp Order
+        function orderViaWhatsApp() {
+            const phoneNumber = "923XXXXXXXXX"; // REPLACE WITH YOUR NUMBER
+            const message = encodeURIComponent("السلام علیکم! I want to order from Kitabon Ki Dolat.");
+            window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+        }
+
+        // Close modals on outside click
+        window.onclick = function(event) {
+            const bookModal = document.getElementById('bookDetailModal');
+            const eventModal = document.getElementById('eventDetailModal');
+            const paymentModal = document.getElementById('paymentModal');
+            
+            if (event.target == bookModal) closeBookDetail();
+            if (event.target == eventModal) closeEventDetail();
+            if (event.target == paymentModal) closePaymentModal();
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.book-card, .plan-card, .feature-card, .audiobook-player, .event-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Play button functionality
+        document.querySelectorAll('.btn-play').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (this.textContent === '▶') {
+                    this.textContent = '⏸';
+                    this.parentElement.querySelector('.audiobook-duration').textContent = 'Playing...';
+                } else {
+                    this.textContent = '▶';
+                    this.parentElement.querySelector('.audiobook-duration').textContent = 'Sample available';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
