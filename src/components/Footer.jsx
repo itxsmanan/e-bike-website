@@ -1,5 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 
+const footerUrdu = '\u06a9\u062a\u0627\u0628\u0648\u06ba \u06a9\u06cc \u062f\u0648\u0644\u062a';
+
 export default function Footer() {
     const navigate = useNavigate();
     const location = useLocation();
@@ -20,14 +22,14 @@ export default function Footer() {
         <footer className="footer">
             <div className="footer-content">
                 <div className="footer-about">
-                    <h3>کتابوں کی دولت</h3>
+                    <h3 lang="ur" dir="rtl">{footerUrdu}</h3>
                     <p>Founded by Dolat Khan Kakar, Pakistan's premier platform for quality literature. Our mission: make books accessible to every Pakistani household.</p>
                     <div className="social-links">
-                        <a href="#">📘</a>
-                        <a href="#">📸</a>
-                        <a href="#">🐦</a>
-                        <a href="#">💼</a>
-                        <a href="#">📹</a>
+                        <a href="#" aria-label="Books">{'\ud83d\udcd8'}</a>
+                        <a href="#" aria-label="Gallery">{'\ud83d\udcf8'}</a>
+                        <a href="#" aria-label="Social">{'\ud83d\udc26'}</a>
+                        <a href="#" aria-label="Business">{'\ud83d\udcbc'}</a>
+                        <a href="#" aria-label="Video">{'\ud83d\udcf9'}</a>
                     </div>
                 </div>
 
@@ -66,7 +68,7 @@ export default function Footer() {
             </div>
 
             <div className="footer-bottom">
-                <p>&copy; 2026 Kitabon Ki Dolat. All rights reserved. Designed with ❤️ by Dolat Khan Kakar for book lovers across Pakistan.</p>
+                <p>&copy; 2026 Kitabon Ki Dolat. All rights reserved. Designed with love by Dolat Khan Kakar for book lovers across Pakistan.</p>
             </div>
         </footer>
     );

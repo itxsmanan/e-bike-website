@@ -21,7 +21,7 @@ const defaultPlans = [
         name: "Quarterly",
         price: 1299,
         period: "/3 months",
-        saveText: "Save 13% • Rs. 433/month",
+        saveText: "Save 13% \u2022 Rs. 433/month",
         features: [
             "Everything in Monthly",
             "Priority support",
@@ -37,7 +37,7 @@ const defaultPlans = [
         name: "Half-Yearly",
         price: 2399,
         period: "/6 months",
-        saveText: "Save 20% • Rs. 400/month",
+        saveText: "Save 20% \u2022 Rs. 400/month",
         features: [
             "Everything in Quarterly",
             "1 signed paperback free",
@@ -54,7 +54,7 @@ const defaultPlans = [
         name: "9-Month Plan",
         price: 3299,
         period: "/9 months",
-        saveText: "Save 26% • Rs. 367/month",
+        saveText: "Save 26% \u2022 Rs. 367/month",
         features: [
             "Everything in Half-Yearly",
             "2 signed books included",
@@ -70,7 +70,7 @@ const defaultPlans = [
         name: "Annual",
         price: 3999,
         period: "/year",
-        saveText: "Save 33% • Rs. 333/month",
+        saveText: "Save 33% \u2022 Rs. 333/month",
         features: [
             "Everything in 9-Month",
             "3 signed books + merch",
@@ -88,7 +88,6 @@ const defaultPlans = [
 export default function SubscriptionPlans() {
     const navigate = useNavigate();
 
-    // Dynamically retrieve plans (which can be configured via admin panel)
     let plans = defaultPlans;
     try {
         const local = localStorage.getItem('kitabon_plans');
@@ -115,8 +114,8 @@ export default function SubscriptionPlans() {
 
             <div className="plans-grid">
                 {plans.map((plan, idx) => (
-                    <div 
-                        key={idx} 
+                    <div
+                        key={idx}
                         className={`plan-card ${plan.isPopular ? 'plan-popular' : ''}`}
                     >
                         {plan.badge && <span className="plan-badge">{plan.badge}</span>}
@@ -131,7 +130,7 @@ export default function SubscriptionPlans() {
                                 <li key={fIdx}>{feature}</li>
                             ))}
                         </ul>
-                        <button 
+                        <button
                             className={`btn-plan ${plan.isGold ? 'btn-plan-gold' : 'btn-plan-accent'}`}
                             onClick={() => handleSubscribe(plan.name, plan.price)}
                         >

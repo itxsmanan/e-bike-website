@@ -4,14 +4,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 export default function PaymentModal() {
     const { itemName, price } = useParams();
     const navigate = useNavigate();
-
-    // Decode item name for display
     const decodedItemName = itemName ? decodeURIComponent(itemName) : '';
 
     useEffect(() => {
-        document.body.style.overflow = 'hidden';
+        document.documentElement.classList.add('modal-open');
+        document.body.classList.add('modal-open');
         return () => {
-            document.body.style.overflow = 'auto';
+            document.documentElement.classList.remove('modal-open');
+            document.body.classList.remove('modal-open');
         };
     }, []);
 
@@ -20,31 +20,31 @@ export default function PaymentModal() {
     };
 
     const handleOutsideClick = (e) => {
-        if (e.target.className === 'payment-modal active') {
+        if (e.target === e.currentTarget) {
             handleClose();
         }
     };
 
     const confirmOrderViaWhatsApp = () => {
         const phoneNumber = "923XXXXXXXXX"; // REPLACE WITH YOUR NUMBER
-        const message = encodeURIComponent(`السلام علیکم!\n\nI want to order:\n${decodedItemName}\nPrice: Rs. ${price}\n\nPlease confirm my order.`);
+        const message = encodeURIComponent(`Assalam o Alaikum!\n\nI want to order:\n${decodedItemName}\nPrice: Rs. ${price}\n\nPlease confirm my order.`);
         window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
     };
 
     return (
         <div className="payment-modal active" onClick={handleOutsideClick}>
             <div className="payment-container">
-                <span className="close-modal" onClick={handleClose}>×</span>
+                <span className="close-modal" onClick={handleClose}>&times;</span>
                 <div className="payment-header">
                     <h2 className="payment-title">Complete Your Purchase</h2>
                     <p style={{ color: 'var(--text-dim)', marginTop: '0.5rem' }}>
                         {decodedItemName} - Rs. {parseFloat(price).toLocaleString()}
                     </p>
                 </div>
-                
+
                 <div className="payment-methods">
                     <div className="payment-method">
-                        <h3>💳 EasyPaisa</h3>
+                        <h3>{'\ud83d\udcb3'} EasyPaisa</h3>
                         <div className="payment-details">
                             <p>Send payment to:</p>
                             <strong>03XX-XXXXXXX</strong>
@@ -54,7 +54,7 @@ export default function PaymentModal() {
                     </div>
 
                     <div className="payment-method">
-                        <h3>🏦 Bank Transfer</h3>
+                        <h3>{'\ud83c\udfe6'} Bank Transfer</h3>
                         <div className="payment-details">
                             <p>Transfer to:</p>
                             <strong>Bank Alfalah</strong>
@@ -65,17 +65,17 @@ export default function PaymentModal() {
                     </div>
 
                     <div className="payment-method">
-                        <h3>💵 Cash on Delivery</h3>
+                        <h3>{'\ud83d\udcb5'} Cash on Delivery</h3>
                         <div className="payment-details">
                             <p>Available in major cities:</p>
-                            <strong>Lahore • Karachi • Islamabad</strong>
+                            <strong>Lahore &bull; Karachi &bull; Islamabad</strong>
                             <p style={{ marginTop: '1rem', fontSize: '0.9rem' }}>Pay when you receive your order</p>
                         </div>
                     </div>
                 </div>
 
                 <button className="btn-whatsapp" onClick={confirmOrderViaWhatsApp}>
-                    💬 Confirm Order via WhatsApp
+                    {'\ud83d\udcac'} Confirm Order via WhatsApp
                 </button>
             </div>
         </div>

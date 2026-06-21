@@ -8,10 +8,11 @@ export default function BookDetailModal() {
     const book = books[id];
 
     useEffect(() => {
-        // Lock body scroll when modal is active
-        document.body.style.overflow = 'hidden';
+        document.documentElement.classList.add('modal-open');
+        document.body.classList.add('modal-open');
         return () => {
-            document.body.style.overflow = 'auto';
+            document.documentElement.classList.remove('modal-open');
+            document.body.classList.remove('modal-open');
         };
     }, []);
 
@@ -24,7 +25,7 @@ export default function BookDetailModal() {
     };
 
     const handleOutsideClick = (e) => {
-        if (e.target.className === 'book-detail-modal active') {
+        if (e.target === e.currentTarget) {
             handleClose();
         }
     };
@@ -36,7 +37,7 @@ export default function BookDetailModal() {
     return (
         <div className="book-detail-modal active" onClick={handleOutsideClick}>
             <div className="book-detail-container">
-                <span className="close-modal" onClick={handleClose}>×</span>
+                <span className="close-modal" onClick={handleClose}>&times;</span>
                 <div className="book-detail-content">
                     <div className="book-detail-cover">
                         {book.cover && (book.cover.startsWith('data:') || book.cover.startsWith('http') || book.cover.length > 5) ? (
@@ -49,11 +50,11 @@ export default function BookDetailModal() {
                         <h2>{book.title}</h2>
                         <p className="book-detail-author">by {book.author}</p>
                         <div className="book-rating">
-                            <span className="stars">★★★★★</span>
+                            <span className="stars">{'\u2605\u2605\u2605\u2605\u2605'}</span>
                             <span className="rating-count">{book.rating} ({book.reviews} reviews)</span>
                         </div>
                         <p className="book-description">{book.description}</p>
-                        
+
                         <div className="book-specs">
                             <div className="spec-item">
                                 <span className="spec-label">Pages</span>
@@ -72,11 +73,11 @@ export default function BookDetailModal() {
                                 <span className="spec-value">{book.published}</span>
                             </div>
                         </div>
-                        
+
                         <div className="purchase-options">
                             <div className="purchase-card">
                                 <div className="purchase-type">E-Book</div>
-                                <div className="purchase-icon">📱</div>
+                                <div className="purchase-icon">{'\ud83d\udcf1'}</div>
                                 <div className="purchase-price">Rs. {book.ebookPrice}</div>
                                 <ul className="purchase-features">
                                     <li>Instant download</li>
@@ -86,10 +87,10 @@ export default function BookDetailModal() {
                                 </ul>
                                 <button className="btn-purchase btn-ebook" onClick={() => handlePurchase('E-Book', book.ebookPrice)}>Buy E-Book</button>
                             </div>
-                            
+
                             <div className="purchase-card">
                                 <div className="purchase-type">Print Book</div>
-                                <div className="purchase-icon">📚</div>
+                                <div className="purchase-icon">{'\ud83d\udcda'}</div>
                                 <div className="purchase-price">Rs. {book.printPrice}</div>
                                 <ul className="purchase-features">
                                     <li>Premium quality paper</li>

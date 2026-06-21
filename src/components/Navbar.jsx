@@ -9,8 +9,7 @@ export default function Navbar() {
     const location = useLocation();
 
     const [theme, setTheme] = useState(
-        () => localStorage.getItem('kitabon_theme') ||
-        (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+        () => localStorage.getItem('kitabon_theme') || 'light'
     );
 
     useEffect(() => {
