@@ -12,57 +12,41 @@ import AboutAuthor from "./components/AboutAuthor";
 import SubscriptionPlans from "./components/SubscriptionPlans";
 import Footer from "./components/Footer";
 import WhatsAppFloat from "./components/WhatsAppFloat";
-import BookDetailModal from "./components/BookDetailModal";
-import EventDetailModal from "./components/EventDetailModal";
+import BookDetail from "./components/BookDetail";
+import EventDetail from "./components/EventDetail";
 import PaymentModal from "./components/PaymentModal";
 import "./App.css";
 
-function HomeLayout({ showBookModal, showEventModal, showPaymentModal }) {
+function HomeLayout({ showPaymentModal }) {
   const location = useLocation();
 
-  // Replicate smooth scrolling from navigation or redirections
+  // Handle scroll-to anchor navigation
   useEffect(() => {
     if (location.state && location.state.scrollTo) {
       const target = document.getElementById(location.state.scrollTo);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-      // Clear location state after scrolling
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
       window.history.replaceState({}, document.title);
     }
   }, [location]);
 
-  // Replicate scroll fade-in animations from the original website
+  // Intersection Observer for .reveal elements
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
-        }
-      });
-    }, observerOptions);
-
-    const elements = document.querySelectorAll(
-      ".book-card, .plan-card, .feature-card, .audiobook-player, .event-card",
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target); // animate once
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
     );
-    elements.forEach((el) => {
-      el.style.opacity = "0";
-      el.style.transform = "translateY(30px)";
-      el.style.transition = "all 0.6s ease";
-      observer.observe(el);
-    });
 
-    return () => {
-      elements.forEach((el) => {
-        observer.unobserve(el);
-      });
-    };
+    const elements = document.querySelectorAll(".reveal");
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -77,9 +61,6 @@ function HomeLayout({ showBookModal, showEventModal, showPaymentModal }) {
       <SubscriptionPlans />
       <Footer />
 
-      {/* Render Modal Overlays based on active React Router route */}
-      {showBookModal && <BookDetailModal />}
-      {showEventModal && <EventDetailModal />}
       {showPaymentModal && <PaymentModal />}
     </>
   );
@@ -92,16 +73,10 @@ function App() {
       <Navbar />
       <WhatsAppFloat />
       <Routes>
-        <Route path="/" element={<HomeLayout />} />
-        <Route path="/book/:id" element={<HomeLayout showBookModal={true} />} />
-        <Route
-          path="/event/:id"
-          element={<HomeLayout showEventModal={true} />}
-        />
-        <Route
-          path="/payment/:itemName/:price"
-          element={<HomeLayout showPaymentModal={true} />}
-        />
+        <Route path="/"                                 element={<HomeLayout />} />
+        <Route path="/book/:id"                         element={<BookDetail />} />
+        <Route path="/event/:id"                        element={<EventDetail />} />
+        <Route path="/payment/:type/:itemName/:price"   element={<HomeLayout showPaymentModal={true} />} />
       </Routes>
     </BrowserRouter>
   );

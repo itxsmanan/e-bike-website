@@ -6,7 +6,7 @@ export default function BookSplash() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setVisible(false);
-        }, 6000);
+        }, 3500); // reduced from 6s to 3.5s for better UX
 
         return () => clearTimeout(timer);
     }, []);
@@ -14,38 +14,36 @@ export default function BookSplash() {
     if (!visible) return null;
 
     return (
-        <div id="bookSplash">
+        <div id="bookSplash" className="splash-screen">
+            {/* Ambient background particles */}
             <div className="particles">
-                <div className="particle"></div>
-                <div className="particle"></div>
-                <div className="particle"></div>
-                <div className="particle"></div>
-                <div className="particle"></div>
+                {[...Array(8)].map((_, i) => (
+                    <div key={i} className={`particle p-${i + 1}`}></div>
+                ))}
             </div>
 
-            <div className="book-container-splash">
-                <div className="book-3d">
-                    <div className="book-spine"></div>
-
-                    <div className="book-cover-splash">
-                        <div className="sparkle"></div>
-                        <div className="sparkle"></div>
-                        <div className="sparkle"></div>
-                        <div className="sparkle"></div>
-                        <h1 lang="ur" dir="rtl">کتابوں کی دولت</h1>
-                        <p>KITABON KI DOLAT</p>
-                    </div>
-
-                    <div className="book-pages">
-                        <p>"True wealth lies not in gold,<br />but in the pages of books..."</p>
-                    </div>
-
-                    <div className="page-turn"></div>
+            <div className="splash-content">
+                <div className="splash-logo-container">
+                    <div className="splash-glow"></div>
+                    <svg className="splash-book-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                        <path d="M12 6v6" className="splash-icon-anim delay-1" />
+                        <path d="M9 9h6" className="splash-icon-anim delay-2" />
+                    </svg>
                 </div>
-            </div>
 
-            <div className="splash-quote" lang="ur" dir="rtl">اصلی دولت کتابوں میں ہے</div>
-            <div className="loading-text">Opening your library</div>
+                <div className="splash-text-group">
+                    <h1 className="splash-urdu" lang="ur" dir="rtl">کتابوں کی دولت</h1>
+                    <h2 className="splash-english">KITABON KI DOLAT</h2>
+                </div>
+
+                <div className="splash-loader">
+                    <div className="splash-loader-bar"></div>
+                </div>
+                
+                <p className="splash-status">Opening your library...</p>
+            </div>
         </div>
     );
 }

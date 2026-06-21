@@ -101,7 +101,7 @@ export default function SubscriptionPlans() {
     }
 
     const handleSubscribe = (name, price) => {
-        navigate(`/payment/${encodeURIComponent(name + ' Subscription')}/${price}`);
+        navigate(`/payment/sub/${encodeURIComponent(name + ' Subscription')}/${price}`);
     };
 
     return (

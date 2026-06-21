@@ -1,76 +1,117 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const audiobooksList = [
+    {
+        id: 1,
+        title: 'The Silent Echo',
+        narrator: 'Ahmed Ali',
+        duration: '8 hrs 32 min',
+        genre: 'Fiction • Thriller',
+        price: 899,
+        coverIcon: '🎧',
+        waveColor: '#C9A962',
+    },
+    {
+        id: 2,
+        title: 'Mindful Leadership',
+        narrator: 'Sara Khan',
+        duration: '6 hrs 15 min',
+        genre: 'Self-Help • Business',
+        price: 1199,
+        coverIcon: '🎙️',
+        waveColor: '#D4664A',
+    },
+];
+
+function WaveAnimation({ active, color }) {
+    return (
+        <div className={`audio-wave ${active ? 'audio-wave-playing' : ''}`} aria-hidden="true">
+            {[...Array(5)].map((_, i) => (
+                <span key={i} className="audio-wave-bar" style={{ '--bar-color': color, '--delay': `${i * 0.12}s` }} />
+            ))}
+        </div>
+    );
+}
+
 export default function Audiobooks() {
     const navigate = useNavigate();
     const [playingId, setPlayingId] = useState(null);
 
-    const audiobooksList = [
-        {
-            id: 1,
-            title: "The Silent Echo",
-            narrator: "Ahmed Ali",
-            duration: "8 hours 32 minutes",
-            price: 899,
-            coverIcon: "\ud83c\udfa7"
-        },
-        {
-            id: 2,
-            title: "Mindful Leadership",
-            narrator: "Sara Khan",
-            duration: "6 hours 15 minutes",
-            price: 1199,
-            coverIcon: "\ud83c\udf99\ufe0f"
-        }
-    ];
-
-    const togglePlay = (id) => {
-        if (playingId === id) {
-            setPlayingId(null);
-        } else {
-            setPlayingId(id);
-        }
-    };
+    const togglePlay = (id) => setPlayingId(prev => prev === id ? null : id);
 
     return (
         <section className="section audiobooks-section" id="audiobooks">
-            <div className="section-header">
+            <div className="section-header reveal">
                 <div className="section-label">Listen Anywhere</div>
                 <h2 className="section-title">Audiobook Collection</h2>
-                <p className="section-subtitle">Professional narrations of your favorite books. Perfect for multitasking.</p>
+                <p className="section-subtitle">
+                    Professional narrations of your favorite books. Perfect for multitasking.
+                </p>
             </div>
 
             <div className="audiobooks-list">
-                {audiobooksList.map((item) => (
-                    <div key={item.id} className="audiobook-player">
-                        <div className="audiobook-cover">{item.coverIcon}</div>
-                        <div className="audiobook-info">
-                            <h3 className="audiobook-title">{item.title}</h3>
-                            <p className="audiobook-narrator">Narrated by {item.narrator} &bull; {item.duration}</p>
-                            <div className="audiobook-controls">
-                                <button className="btn-play" type="button" onClick={() => togglePlay(item.id)} aria-label={playingId === item.id ? `Pause ${item.title}` : `Play ${item.title}`}>
-                                    {playingId === item.id ? '\u23f8' : '\u25b6'}
+                {audiobooksList.map((item, idx) => {
+                    const isPlaying = playingId === item.id;
+                    return (
+                        <div
+                            key={item.id}
+                            className={`audiobook-player reveal ${isPlaying ? 'audiobook-playing' : ''}`}
+                            style={{ transitionDelay: `${idx * 0.15}s` }}
+                        >
+                            {/* Cover */}
+                            <div className="audiobook-cover" style={{ '--cover-accent': item.waveColor }}>
+                                <span>{item.coverIcon}</span>
+                                {isPlaying && <div className="audiobook-cover-ring" />}
+                            </div>
+
+                            {/* Info */}
+                            <div className="audiobook-info">
+                                <div className="audiobook-genre">{item.genre}</div>
+                                <h3 className="audiobook-title">{item.title}</h3>
+                                <p className="audiobook-narrator">Narrated by <strong>{item.narrator}</strong> • {item.duration}</p>
+
+                                <div className="audiobook-controls">
+                                    <button
+                                        className={`btn-play ${isPlaying ? 'btn-play-active' : ''}`}
+                                        type="button"
+                                        onClick={() => togglePlay(item.id)}
+                                        aria-label={isPlaying ? `Pause ${item.title}` : `Play ${item.title}`}
+                                    >
+                                        {isPlaying ? (
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                                <rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>
+                                            </svg>
+                                        ) : (
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                                <polygon points="5 3 19 12 5 21 5 3"/>
+                                            </svg>
+                                        )}
+                                    </button>
+
+                                    <WaveAnimation active={isPlaying} color={item.waveColor} />
+
+                                    <span className="audiobook-duration">
+                                        {isPlaying ? 'Playing sample...' : 'Sample available'}
+                                    </span>
+                                </div>
+                            </div>
+
+                            {/* Purchase */}
+                            <div className="audiobook-purchase">
+                                <span className="price">Rs. {item.price.toLocaleString()}</span>
+                                <button
+                                    className="btn-primary"
+                                    style={{ padding: '0.55rem 1.25rem', fontSize: '0.85rem' }}
+                                    type="button"
+                                    onClick={() => navigate(`/payment/${encodeURIComponent(item.title + ' Audiobook')}/${item.price}`)}
+                                >
+                                    Buy Now
                                 </button>
-                                <span className="audiobook-duration">
-                                    {playingId === item.id ? 'Playing...' : 'Sample available'}
-                                </span>
                             </div>
                         </div>
-                        <div className="audiobook-purchase">
-                            <span className="price">Rs. {item.price.toLocaleString()}</span>
-                            <button
-                                className="view-details"
-                                type="button"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    navigate(`/payment/${encodeURIComponent(item.title + ' Audiobook')}/${item.price}`);
-                                }}
-                            >
-                                Buy Now
-                            </button>
-                        </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
         </section>
     );

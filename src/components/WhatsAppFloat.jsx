@@ -1,3 +1,5 @@
+import { FaWhatsapp } from 'react-icons/fa';
+
 export default function WhatsAppFloat() {
     const orderViaWhatsApp = () => {
         const phoneNumber = "923XXXXXXXXX"; // REPLACE WITH YOUR NUMBER
@@ -6,8 +8,15 @@ export default function WhatsAppFloat() {
     };
 
     return (
-        <button className="whatsapp-float" type="button" onClick={orderViaWhatsApp} aria-label="Chat on WhatsApp">
-            {'\ud83d\udcac'}
-        </button>
+        <div className="whatsapp-float">
+            <button 
+                className="whatsapp-btn" 
+                type="button" 
+                onClick={orderViaWhatsApp} 
+                aria-label="Chat on WhatsApp"
+            >
+                <FaWhatsapp size={32} color="#FFF" />
+            </button>
+        </div>
     );
 }

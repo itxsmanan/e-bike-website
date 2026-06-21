@@ -1,51 +1,75 @@
-export default function LibraryFeatures() {
-    const features = [
-        {
-            icon: "📱",
-            title: "Multi-Device Sync",
-            desc: "Read on phone, tablet, or computer. Your progress syncs automatically across all devices."
-        },
-        {
-            icon: "🌙",
-            title: "Night Mode",
-            desc: "Eye-friendly dark mode with customizable fonts and spacing for comfortable reading anytime."
-        },
-        {
-            icon: "✏️",
-            title: "Smart Annotations",
-            desc: "Highlight passages, make notes, and bookmark pages. Export your reading notes anytime."
-        },
-        {
-            icon: "📊",
-            title: "Reading Analytics",
-            desc: "Track your reading habits, set goals, and earn achievements as you complete books."
-        },
-        {
-            icon: "💬",
-            title: "Reader Community",
-            desc: "Join discussions, share reviews, and connect with fellow readers who love the same books."
-        },
-        {
-            icon: "🎁",
-            title: "Gift Books",
-            desc: "Send books as gifts with personalized messages. Perfect for birthdays and special occasions."
-        }
-    ];
+const features = [
+    {
+        icon: '📱',
+        title: 'Multi-Device Sync',
+        desc: 'Read on phone, tablet, or computer. Your progress syncs automatically across all devices.',
+        gradient: 'linear-gradient(135deg,rgba(201,169,98,0.15),rgba(201,169,98,0.05))',
+    },
+    {
+        icon: '🌙',
+        title: 'Night Mode',
+        desc: 'Eye-friendly dark mode with customizable fonts and spacing for comfortable reading anytime.',
+        gradient: 'linear-gradient(135deg,rgba(99,102,241,0.15),rgba(99,102,241,0.05))',
+    },
+    {
+        icon: '✏️',
+        title: 'Smart Annotations',
+        desc: 'Highlight passages, make notes, and bookmark pages. Export your reading notes anytime.',
+        gradient: 'linear-gradient(135deg,rgba(212,102,74,0.15),rgba(212,102,74,0.05))',
+    },
+    {
+        icon: '📊',
+        title: 'Reading Analytics',
+        desc: 'Track reading habits, set goals, and earn achievements as you complete books.',
+        gradient: 'linear-gradient(135deg,rgba(34,211,238,0.12),rgba(34,211,238,0.04))',
+    },
+    {
+        icon: '💬',
+        title: 'Reader Community',
+        desc: 'Join discussions, share reviews, and connect with fellow readers who love the same books.',
+        gradient: 'linear-gradient(135deg,rgba(168,85,247,0.15),rgba(168,85,247,0.05))',
+    },
+    {
+        icon: '🎁',
+        title: 'Gift Books',
+        desc: 'Send books as gifts with personalized messages. Perfect for birthdays and special occasions.',
+        gradient: 'linear-gradient(135deg,rgba(52,211,153,0.12),rgba(52,211,153,0.04))',
+    },
+];
 
+export default function LibraryFeatures() {
     return (
         <section className="section" id="library">
-            <div className="section-header">
+            <div className="section-header reveal">
                 <div className="section-label">Digital Library</div>
                 <h2 className="section-title">Your Personal E-Library</h2>
-                <p className="section-subtitle">Everything you need for the perfect reading experience</p>
+                <p className="section-subtitle">
+                    Everything you need for the perfect reading experience
+                </p>
             </div>
 
             <div className="features-grid">
                 {features.map((item, idx) => (
-                    <div key={idx} className="feature-card">
-                        <div className="feature-icon">{item.icon}</div>
+                    <div
+                        key={idx}
+                        className="feature-card reveal"
+                        style={{ transitionDelay: `${idx * 0.08}s` }}
+                    >
+                        <div
+                            className="feature-icon"
+                            style={{ background: item.gradient }}
+                        >
+                            {item.icon}
+                        </div>
                         <h3 className="feature-title">{item.title}</h3>
                         <p className="feature-desc">{item.desc}</p>
+
+                        {/* Arrow indicator */}
+                        <div className="feature-arrow">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                            </svg>
+                        </div>
                     </div>
                 ))}
             </div>
