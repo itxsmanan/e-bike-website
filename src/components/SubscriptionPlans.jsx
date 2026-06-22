@@ -1,4 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 const defaultPlans = [
     {
@@ -106,39 +111,67 @@ export default function SubscriptionPlans() {
 
     return (
         <section className="subscription-section" id="subscriptions">
-            <div className="section-header">
-                <div className="section-label">Premium Access</div>
-                <h2 className="section-title">Unlimited Reading Plans</h2>
-                <p className="section-subtitle">Get access to everything above with our affordable membership plans</p>
+            <div className="section-header section-header-with-nav">
+                <div className="header-content">
+                    <div className="section-label">Premium Access</div>
+                    <h2 className="section-title">Unlimited Reading Plans</h2>
+                    <p className="section-subtitle">Get access to everything above with our affordable membership plans</p>
+                </div>
+                <div className="modern-slider-nav">
+                    <button className="nav-btn plans-prev">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <button className="nav-btn plans-next">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                </div>
             </div>
 
-            <div className="plans-grid">
+            <Swiper
+                modules={[Pagination, Navigation]}
+                spaceBetween={20}
+                slidesPerView={1}
+                navigation={{
+                    prevEl: '.plans-prev',
+                    nextEl: '.plans-next',
+                }}
+                pagination={{ clickable: true }}
+                breakpoints={{
+                    640: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                    1440: { slidesPerView: 3 }
+                }}
+                className="plans-swiper"
+                style={{ padding: '2rem 1rem 4rem 1rem' }}
+            >
                 {plans.map((plan, idx) => (
-                    <div
-                        key={idx}
-                        className={`plan-card ${plan.isPopular ? 'plan-popular' : ''}`}
-                    >
-                        {plan.badge && <span className="plan-badge">{plan.badge}</span>}
-                        <h3 className="plan-name">{plan.name}</h3>
-                        <div className="plan-price">
-                            <span className="price-amount">Rs. {plan.price.toLocaleString()}</span>
-                            <span style={{ color: 'var(--text-dim)' }}>{plan.period}</span>
-                        </div>
-                        <p className="plan-save">{plan.saveText}</p>
-                        <ul className="plan-features">
-                            {plan.features.map((feature, fIdx) => (
-                                <li key={fIdx}>{feature}</li>
-                            ))}
-                        </ul>
-                        <button
-                            className={`btn-plan ${plan.isGold ? 'btn-plan-gold' : 'btn-plan-accent'}`}
-                            onClick={() => handleSubscribe(plan.name, plan.price)}
+                    <SwiperSlide key={idx} style={{ height: 'auto' }}>
+                        <div
+                            className={`plan-card ${plan.isPopular ? 'plan-popular' : ''}`}
+                            style={{ height: '100%' }}
                         >
-                            {plan.btnText}
-                        </button>
-                    </div>
+                            {plan.badge && <span className="plan-badge">{plan.badge}</span>}
+                            <h3 className="plan-name">{plan.name}</h3>
+                            <div className="plan-price">
+                                <span className="price-amount">Rs. {plan.price.toLocaleString()}</span>
+                                <span style={{ color: 'var(--text-dim)' }}>{plan.period}</span>
+                            </div>
+                            <p className="plan-save">{plan.saveText}</p>
+                            <ul className="plan-features">
+                                {plan.features.map((feature, fIdx) => (
+                                    <li key={fIdx}>{feature}</li>
+                                ))}
+                            </ul>
+                            <button
+                                className={`btn-plan ${plan.isGold ? 'btn-plan-gold' : 'btn-plan-accent'}`}
+                                onClick={() => handleSubscribe(plan.name, plan.price)}
+                            >
+                                {plan.btnText}
+                            </button>
+                        </div>
+                    </SwiperSlide>
                 ))}
-            </div>
+            </Swiper>
         </section>
     );
 }

@@ -37,42 +37,76 @@ const features = [
     },
 ];
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
 export default function LibraryFeatures() {
     return (
         <section className="section" id="library">
-            <div className="section-header reveal">
-                <div className="section-label">Digital Library</div>
-                <h2 className="section-title">Your Personal E-Library</h2>
-                <p className="section-subtitle">
-                    Everything you need for the perfect reading experience
-                </p>
+            <div className="section-header reveal section-header-with-nav">
+                <div className="header-content">
+                    <div className="section-label">Digital Library</div>
+                    <h2 className="section-title">Your Personal E-Library</h2>
+                    <p className="section-subtitle">
+                        Everything you need for the perfect reading experience
+                    </p>
+                </div>
+                <div className="modern-slider-nav">
+                    <button className="nav-btn lib-prev">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <button className="nav-btn lib-next">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                </div>
             </div>
 
-            <div className="features-grid">
+            <Swiper
+                modules={[Pagination, Navigation, Autoplay]}
+                spaceBetween={30}
+                slidesPerView={1}
+                navigation={{
+                    prevEl: '.lib-prev',
+                    nextEl: '.lib-next',
+                }}
+                pagination={{ clickable: true }}
+                autoplay={{ delay: 4000, disableOnInteraction: false }}
+                breakpoints={{
+                    640: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                    1440: { slidesPerView: 3 }
+                }}
+                className="features-swiper"
+                style={{ padding: '2rem 1rem 4rem 1rem' }}
+            >
                 {features.map((item, idx) => (
-                    <div
-                        key={idx}
-                        className="feature-card reveal"
-                        style={{ transitionDelay: `${idx * 0.08}s` }}
-                    >
+                    <SwiperSlide key={idx}>
                         <div
-                            className="feature-icon"
-                            style={{ background: item.gradient }}
+                            className="feature-card reveal"
+                            style={{ transitionDelay: `${idx * 0.08}s` }}
                         >
-                            {item.icon}
-                        </div>
-                        <h3 className="feature-title">{item.title}</h3>
-                        <p className="feature-desc">{item.desc}</p>
+                            <div
+                                className="feature-icon"
+                                style={{ background: item.gradient }}
+                            >
+                                {item.icon}
+                            </div>
+                            <h3 className="feature-title">{item.title}</h3>
+                            <p className="feature-desc">{item.desc}</p>
 
-                        {/* Arrow indicator */}
-                        <div className="feature-arrow">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-                            </svg>
+                            {/* Arrow indicator */}
+                            <div className="feature-arrow">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                                </svg>
+                            </div>
                         </div>
-                    </div>
+                    </SwiperSlide>
                 ))}
-            </div>
+            </Swiper>
         </section>
     );
 }

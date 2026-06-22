@@ -206,7 +206,7 @@ export default function PaymentModal() {
                                 onClick={() => setSelectedMethod(method.id)}
                                 style={{ '--theme-color': method.color }}
                             >
-                                <div className="checkout-method-icon" style={{ color: selectedMethod === method.id ? '#fff' : method.color }}>
+                                <div className="checkout-method-icon" style={{ color: method.color }}>
                                     {method.icon}
                                 </div>
                                 <span className="checkout-method-name">{method.name}</span>

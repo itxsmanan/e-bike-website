@@ -15,6 +15,7 @@ import WhatsAppFloat from "./components/WhatsAppFloat";
 import BookDetail from "./components/BookDetail";
 import EventDetail from "./components/EventDetail";
 import PaymentModal from "./components/PaymentModal";
+import StaticPage from "./components/StaticPage";
 import "./App.css";
 
 function HomeLayout({ showPaymentModal }) {
@@ -77,6 +78,15 @@ function App() {
         <Route path="/book/:id"                         element={<BookDetail />} />
         <Route path="/event/:id"                        element={<EventDetail />} />
         <Route path="/payment/:type/:itemName/:price"   element={<HomeLayout showPaymentModal={true} />} />
+        
+        {/* Footer Static Pages */}
+        <Route path="/help" element={<StaticPage title="Help Center" />} />
+        <Route path="/faqs" element={<StaticPage title="Frequently Asked Questions" />} />
+        <Route path="/contact" element={<StaticPage title="Contact Us" />} />
+        <Route path="/shipping" element={<StaticPage title="Shipping Information" />} />
+        <Route path="/returns" element={<StaticPage title="Return Policy" />} />
+        <Route path="/privacy" element={<StaticPage title="Privacy Policy" />} />
+        <Route path="/terms" element={<StaticPage title="Terms of Service" />} />
       </Routes>
     </BrowserRouter>
   );
