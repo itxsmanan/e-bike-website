@@ -7,7 +7,7 @@ export default function PaymentModal() {
     const navigate = useNavigate();
     const decodedItemName = itemName ? decodeURIComponent(itemName) : '';
     
-    const [selectedMethod, setSelectedMethod] = useState(type === 'sub' ? 'jazzcash' : 'cod');
+    const [selectedMethod, setSelectedMethod] = useState(type === 'book' ? 'cod' : 'jazzcash');
     
     // Form states
     const [jazzcashNumber, setJazzcashNumber] = useState('');
@@ -148,7 +148,12 @@ export default function PaymentModal() {
                         <FaCheckCircle color="#25D366" size={80} style={{ marginBottom: '1rem' }} />
                         <h2 style={{ color: 'var(--text)', marginBottom: '0.5rem' }}>Order Placed Successfully!</h2>
                         <p style={{ color: 'var(--text-dim)', marginBottom: '2rem' }}>
-                            {selectedMethod === 'jazzcash' ? 'Your subscription has been activated.' : 'We will dispatch your book shortly.'}
+                            {type === 'sub' 
+                                ? 'Your subscription has been activated.' 
+                                : type === 'audio' 
+                                    ? 'Your audiobook is ready for download.' 
+                                    : 'We will dispatch your book shortly.'
+                            }
                         </p>
                         <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Redirecting to home...</p>
                     </div>

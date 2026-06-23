@@ -187,7 +187,7 @@ function BookVector() {
 }
 
 /* ── Main Hero ─────────────────────────────────────────────── */
-const brandUrdu = 'کتابوں کی دولت';
+const brandUrdu = 'اصلی دولت کتابوں میں ہے';
 
 export default function Hero() {
     const [visible, setVisible] = useState(false);

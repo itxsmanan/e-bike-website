@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const audiobooksList = [
@@ -37,12 +37,32 @@ function WaveAnimation({ active, color }) {
 export default function Audiobooks() {
     const navigate = useNavigate();
     const [playingId, setPlayingId] = useState(null);
+    const sectionRef = useRef(null);
+    const [inView, setInView] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setInView(true);
+                    observer.unobserve(entry.target);
+                }
+            },
+            { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     const togglePlay = (id) => setPlayingId(prev => prev === id ? null : id);
 
     return (
-        <section className="section audiobooks-section" id="audiobooks">
-            <div className="section-header reveal">
+        <section ref={sectionRef} className="section audiobooks-section" id="audiobooks">
+            <div className={`section-header reveal ${inView ? 'in-view' : ''}`}>
                 <div className="section-label">Listen Anywhere</div>
                 <h2 className="section-title">Audiobook Collection</h2>
                 <p className="section-subtitle">
@@ -56,7 +76,7 @@ export default function Audiobooks() {
                     return (
                         <div
                             key={item.id}
-                            className={`audiobook-player reveal ${isPlaying ? 'audiobook-playing' : ''}`}
+                            className={`audiobook-player reveal ${inView ? 'in-view' : ''} ${isPlaying ? 'audiobook-playing' : ''}`}
                             style={{ transitionDelay: `${idx * 0.15}s` }}
                         >
                             {/* Cover */}
@@ -104,7 +124,7 @@ export default function Audiobooks() {
                                     className="btn-primary"
                                     style={{ padding: '0.55rem 1.25rem', fontSize: '0.85rem' }}
                                     type="button"
-                                    onClick={() => navigate(`/payment/${encodeURIComponent(item.title + ' Audiobook')}/${item.price}`)}
+                                    onClick={() => navigate(`/payment/audio/${encodeURIComponent(item.title + ' Audiobook')}/${item.price}`)}
                                 >
                                     Buy Now
                                 </button>

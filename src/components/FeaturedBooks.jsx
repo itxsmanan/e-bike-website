@@ -11,8 +11,9 @@ export default function FeaturedBooks() {
 
     return (
         <section className="section" id="books">
-            <div className="section-header reveal section-header-with-nav">
-                <div className="header-content">
+            {/* Header row: text left, arrows right */}
+            <div className="section-header-with-nav reveal">
+                <div className="shwn-text">
                     <div className="section-label">Featured Collection</div>
                     <h2 className="section-title">Books by Dolat Khan Kakar</h2>
                     <p className="section-subtitle">
@@ -20,11 +21,11 @@ export default function FeaturedBooks() {
                     </p>
                 </div>
                 <div className="modern-slider-nav">
-                    <button className="nav-btn books-prev">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+                    <button className="nav-btn books-prev" aria-label="Previous books">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
                     </button>
-                    <button className="nav-btn books-next">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+                    <button className="nav-btn books-next" aria-label="Next books">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                     </button>
                 </div>
             </div>
