@@ -1,5 +1,11 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import { LibraryProvider } from "./context/LibraryContext";
+import AuthModal from "./components/auth/AuthModal";
+import SubscriptionGate from "./components/auth/SubscriptionGate";
+import LibraryPage from "./pages/LibraryPage";
+
 import BookSplash from "./components/BookSplash";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -17,6 +23,23 @@ import EventDetail from "./components/EventDetail";
 import PaymentModal from "./components/PaymentModal";
 import StaticPage from "./components/StaticPage";
 import "./App.css";
+
+/**
+ * AppOverlays
+ * ─────────────────────────────────────────────────────────
+ * Renders auth overlays ON TOP of the existing app — the home
+ * page is always visible underneath. Overlays appear only when
+ * a user action triggers them (clicking "Sign In", "Subscribe", etc).
+ */
+function AppOverlays() {
+  const { showAuthModal, showSubGate } = useAuth();
+  return (
+    <>
+      {showAuthModal && <AuthModal />}
+      {showSubGate   && <SubscriptionGate />}
+    </>
+  );
+}
 
 function HomeLayout({ showPaymentModal }) {
   const location = useLocation();
@@ -69,26 +92,35 @@ function HomeLayout({ showPaymentModal }) {
 
 function App() {
   return (
-    <BrowserRouter>
-      <BookSplash />
-      <Navbar />
-      <WhatsAppFloat />
-      <Routes>
-        <Route path="/"                                 element={<HomeLayout />} />
-        <Route path="/book/:id"                         element={<BookDetail />} />
-        <Route path="/event/:id"                        element={<EventDetail />} />
-        <Route path="/payment/:type/:itemName/:price"   element={<HomeLayout showPaymentModal={true} />} />
-        
-        {/* Footer Static Pages */}
-        <Route path="/help" element={<StaticPage title="Help Center" />} />
-        <Route path="/faqs" element={<StaticPage title="Frequently Asked Questions" />} />
-        <Route path="/contact" element={<StaticPage title="Contact Us" />} />
-        <Route path="/shipping" element={<StaticPage title="Shipping Information" />} />
-        <Route path="/returns" element={<StaticPage title="Return Policy" />} />
-        <Route path="/privacy" element={<StaticPage title="Privacy Policy" />} />
-        <Route path="/terms" element={<StaticPage title="Terms of Service" />} />
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <LibraryProvider>
+        <BrowserRouter>
+          {/* Always-visible app shell */}
+          <BookSplash />
+          <Navbar />
+          <WhatsAppFloat />
+          <Routes>
+            <Route path="/"                                 element={<HomeLayout />} />
+            <Route path="/library"                          element={<LibraryPage />} />
+            <Route path="/book/:id"                         element={<BookDetail />} />
+            <Route path="/event/:id"                        element={<EventDetail />} />
+            <Route path="/payment/:type/:itemName/:price"   element={<HomeLayout showPaymentModal={true} />} />
+
+            {/* Footer Static Pages */}
+            <Route path="/help"     element={<StaticPage title="Help Center" />} />
+            <Route path="/faqs"     element={<StaticPage title="Frequently Asked Questions" />} />
+            <Route path="/contact"  element={<StaticPage title="Contact Us" />} />
+            <Route path="/shipping" element={<StaticPage title="Shipping Information" />} />
+            <Route path="/returns"  element={<StaticPage title="Return Policy" />} />
+            <Route path="/privacy"  element={<StaticPage title="Privacy Policy" />} />
+            <Route path="/terms"    element={<StaticPage title="Terms of Service" />} />
+          </Routes>
+
+          {/* Auth overlays — float above the app, shown only on user action */}
+          <AppOverlays />
+        </BrowserRouter>
+      </LibraryProvider>
+    </AuthProvider>
   );
 }
 

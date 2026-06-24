@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { books } from '../data/booksData';
+import BookActionButtons from './library/BookActionButtons';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -71,6 +73,10 @@ export default function FeaturedBooks() {
 
                                 {/* Hover overlay */}
                                 <div className="book-cover-overlay">
+                                    {/* Bookmark icon — top right */}
+                                    <div className="absolute top-3 right-3" onClick={(e) => e.stopPropagation()}>
+                                        <BookActionButtons book={book} variant="card" />
+                                    </div>
                                     <button
                                         className="book-quick-view"
                                         onClick={(e) => { e.stopPropagation(); navigate(`/book/${book.id}`); }}

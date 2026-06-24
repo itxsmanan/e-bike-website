@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaStar, FaRegStar, FaBookOpen, FaBoxOpen, FaTruck, FaLock, FaCheckCircle } from 'react-icons/fa';
+import { FaArrowLeft, FaStar, FaRegStar, FaBoxOpen, FaTruck, FaLock, FaCheckCircle } from 'react-icons/fa';
 import { books } from '../data/booksData';
+import BookActionButtons from './library/BookActionButtons';
+
 
 export default function BookDetail() {
     const { id } = useParams();
@@ -25,11 +27,6 @@ export default function BookDetail() {
     const handleBuyHardCopy = () => {
         // Route as 'book' for Cash on Delivery / Bank / EasyPaisa
         navigate(`/payment/book/${encodeURIComponent(book.title + ' (Hard Copy)')}/${book.printPrice}`);
-    };
-
-    const handleSubscribeToRead = () => {
-        // Navigate to home and scroll to subscriptions
-        navigate('/', { state: { scrollTo: 'subscriptions' } });
     };
 
     // Render stars helper
@@ -137,23 +134,9 @@ export default function BookDetail() {
 
                                 <div className="buy-divider"><span>OR</span></div>
 
-                                {/* Option 2: Subscribe to Read */}
+                                {/* Option 2: Read via subscription */}
                                 <div className="purchase-option subscription-option">
-                                    <div className="option-header">
-                                        <FaBookOpen className="option-icon gold" />
-                                        <div className="option-title-wrap">
-                                            <strong>Subscribe to Read</strong>
-                                            <span className="option-subtitle">Read this and thousands more</span>
-                                        </div>
-                                    </div>
-                                    <ul className="option-perks">
-                                        <li><FaCheckCircle color="#C9A962" /> Unlimited digital access</li>
-                                        <li><FaCheckCircle color="#C9A962" /> Read on any device</li>
-                                        <li><FaCheckCircle color="#C9A962" /> Cancel anytime</li>
-                                    </ul>
-                                    <button className="btn-subscribe-now" onClick={handleSubscribeToRead}>
-                                        View Subscription Plans
-                                    </button>
+                                    <BookActionButtons book={book} variant="detail" />
                                 </div>
 
                             </div>
