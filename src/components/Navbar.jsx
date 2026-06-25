@@ -126,6 +126,7 @@ function UserMenu({ user, onLogout }) {
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [activeNav, setActiveNav] = useState('home');
     const navigate = useNavigate();
     const location = useLocation();
     const { user, isLoggedIn, isSubscribed, logout, openAuthModal } = useAuth();
@@ -150,9 +151,72 @@ export default function Navbar() {
         setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
     };
 
+    useEffect(() => {
+        if (location.pathname === '/library') {
+            setActiveNav('library');
+            return;
+        }
+        if (location.pathname.startsWith('/book/')) {
+            setActiveNav('books');
+            return;
+        }
+        if (location.pathname.startsWith('/event/')) {
+            setActiveNav('events');
+            return;
+        }
+        if (location.pathname !== '/') {
+            setActiveNav('');
+            return;
+        }
+
+        const sectionIds = ['home', 'books', 'audiobooks', 'events', 'about', 'subscriptions'];
+        const sections = sectionIds
+            .map((id) => document.getElementById(id))
+            .filter(Boolean);
+
+        if (!sections.length) {
+            setActiveNav('home');
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visible = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+                if (visible?.target?.id) {
+                    setActiveNav(visible.target.id);
+                }
+            },
+            {
+                rootMargin: '-35% 0px -50% 0px',
+                threshold: [0.12, 0.25, 0.5, 0.75],
+            }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+
+        const syncInitialSection = () => {
+            const navOffset = 96;
+            const current = [...sections]
+                .map((section) => ({
+                    id: section.id,
+                    distance: Math.abs(section.getBoundingClientRect().top - navOffset),
+                }))
+                .sort((a, b) => a.distance - b.distance)[0];
+
+            if (current?.id) setActiveNav(current.id);
+        };
+
+        syncInitialSection();
+        return () => observer.disconnect();
+    }, [location.pathname]);
+
     const handleNavClick = (e, targetId) => {
         e.preventDefault();
         setMenuOpen(false);
+        setActiveNav(targetId);
 
         if (location.pathname !== '/' && !location.pathname.startsWith('/book/') && !location.pathname.startsWith('/event/') && !location.pathname.startsWith('/payment/')) {
             navigate('/', { state: { scrollTo: targetId } });
@@ -170,6 +234,9 @@ export default function Navbar() {
         }
     };
 
+    const navLinkClass = (id, extra = '') =>
+        `${activeNav === id ? 'active' : ''} ${extra}`.trim();
+
     return (
         <nav className="nav" aria-label="Primary navigation">
             <div className="nav-container">
@@ -178,19 +245,18 @@ export default function Navbar() {
                 </div>
 
                 <ul className={`nav-menu ${menuOpen ? 'is-open' : ''}`}>
-                    <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Home</a></li>
-                    <li><a href="#books" onClick={(e) => handleNavClick(e, 'books')}>Books</a></li>
-                    <li><a href="#audiobooks" onClick={(e) => handleNavClick(e, 'audiobooks')}>Audio Books</a></li>
-                    <li><a href="#events" onClick={(e) => handleNavClick(e, 'events')}>Celebrity Events</a></li>
-                    <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')}>About</a></li>
+                    <li><a className={navLinkClass('home')} href="#home" onClick={(e) => handleNavClick(e, 'home')}>Home</a></li>
+                    <li><a className={navLinkClass('books')} href="#books" onClick={(e) => handleNavClick(e, 'books')}>Books</a></li>
+                    <li><a className={navLinkClass('audiobooks')} href="#audiobooks" onClick={(e) => handleNavClick(e, 'audiobooks')}>Audio Books</a></li>
+                    <li><a className={navLinkClass('events')} href="#events" onClick={(e) => handleNavClick(e, 'events')}>Celebrity Events</a></li>
+                    <li><a className={navLinkClass('about')} href="#about" onClick={(e) => handleNavClick(e, 'about')}>About</a></li>
                     {isLoggedIn && isSubscribed && (
                         <li>
                             <a
                                 href="/library"
                                 id="nav-library-link"
-                                onClick={(e) => { e.preventDefault(); setMenuOpen(false); navigate('/library'); }}
-                                className="relative"
-                                style={{ color: 'var(--gold)' }}
+                                onClick={(e) => { e.preventDefault(); setMenuOpen(false); setActiveNav('library'); navigate('/library'); }}
+                                className={navLinkClass('library')}
                             >
                                 My Library
                             </a>
@@ -200,7 +266,7 @@ export default function Navbar() {
                         <li>
                             <a
                                 href="#subscriptions"
-                                className="btn-primary"
+                                className={navLinkClass('subscriptions', 'btn-primary')}
                                 onClick={(e) => {
                                     if (!isLoggedIn) {
                                         e.preventDefault();

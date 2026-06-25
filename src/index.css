@@ -304,6 +304,21 @@ body::before {
   transition:all 0.25s ease; position:relative; white-space:nowrap;
 }
 .nav-menu li a:not(.btn-primary):hover { color:var(--gold-bright); }
+.nav-menu li a.active:not(.btn-primary) {
+  color:var(--gold-bright);
+  background:rgba(201,169,98,0.13);
+  box-shadow:inset 0 0 0 1px rgba(201,169,98,0.22), 0 8px 22px rgba(201,169,98,0.12);
+}
+.nav-menu li a.active:not(.btn-primary)::after {
+  content:'';
+  position:absolute;
+  left:0.9rem;
+  right:0.9rem;
+  bottom:0.25rem;
+  height:2px;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-bright));
+}
 .nav-menu li a.btn-primary {
   background:linear-gradient(135deg,var(--gold),var(--gold-bright));
   color:var(--midnight); font-weight:700; padding:0.5rem 1.2rem;
@@ -314,6 +329,10 @@ body::before {
 .nav-menu li a.btn-primary:hover {
   transform:translateY(-2px);
   box-shadow:0 8px 24px rgba(201,169,98,0.4);
+}
+.nav-menu li a.btn-primary.active {
+  box-shadow:0 0 0 3px rgba(201,169,98,0.22), 0 10px 28px rgba(201,169,98,0.42);
+  transform:translateY(-1px);
 }
 
 /* Theme Toggle & Actions Wrapper */
@@ -1874,6 +1893,11 @@ body::before {
 .light-theme .logo-english { color:var(--text-dim); }
 .light-theme .nav-menu li a:not(.btn-primary) { color:var(--text-dim); }
 .light-theme .nav-menu li a:not(.btn-primary):hover { color:var(--gold); }
+.light-theme .nav-menu li a.active:not(.btn-primary) {
+  color:var(--gold);
+  background:rgba(166,124,46,0.1);
+  box-shadow:inset 0 0 0 1px rgba(166,124,46,0.18), 0 8px 22px rgba(166,124,46,0.08);
+}
 .light-theme .theme-toggle-btn { background:rgba(166,124,46,0.06); border-color:rgba(0,0,0,0.08); color:var(--gold); }
 
 .light-theme .hero::before {
@@ -1980,6 +2004,9 @@ body::before {
   }
   .nav-menu.is-open { transform:translateY(0); opacity:1; pointer-events:all; }
   .nav-menu li a { padding:0.75rem 1rem; border-radius:var(--radius-sm); font-size:1rem; }
+  .nav-menu li { width:100%; }
+  .nav-menu li a { width:100%; text-align:center; }
+  .nav-menu li a.active:not(.btn-primary)::after { left:1rem; right:1rem; bottom:0.35rem; }
   .nav-toggle { display:flex; }
   .light-theme .nav-menu { background:rgba(244,246,252,0.98); }
 
