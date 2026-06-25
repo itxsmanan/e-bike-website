@@ -126,7 +126,7 @@ export default function EventDetail() {
                                 {event.testimonials?.map((testimonial, idx) => (
                                     <div key={idx} className="testimonial-card">
                                         <div className="testimonial-card-head">
-                                            <div className="testimonial-avatar">{testimonial.avatar}</div>
+                                            <div className="testimonial-avatar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><FaUserTie style={{ opacity: 0.7 }} /></div>
                                             <div>
                                                 <div className="testimonial-name">{testimonial.name}</div>
                                                 <div className="testimonial-role">{testimonial.role}</div>

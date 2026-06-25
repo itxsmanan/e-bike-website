@@ -129,7 +129,7 @@ function ReadingCard({ book, onProgress, onFinish, onRemove }) {
       >
         {book.cover?.length > 5
           ? <img src={book.cover} alt={book.title} className="w-full h-full object-cover rounded-xl" />
-          : book.cover}
+          : <FiBook style={{ opacity: 0.5 }} />}
       </div>
 
       {/* Info */}
@@ -224,7 +224,7 @@ function SavedCard({ book, onRemove, onStartReading }) {
       >
         {book.cover?.length > 5
           ? <img src={book.cover} alt={book.title} className="w-full h-full object-cover" />
-          : book.cover}
+          : <FiBook style={{ opacity: 0.5 }} />}
       </div>
       <div className="p-4 flex flex-col gap-2 flex-1">
         <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{book.category}</p>
@@ -273,7 +273,7 @@ function FinishedCard({ book, onReRead, onRemove }) {
       >
         {book.cover?.length > 5
           ? <img src={book.cover} alt={book.title} className="w-full h-full object-cover rounded-xl" />
-          : book.cover}
+          : <FiBook style={{ opacity: 0.5 }} />}
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-0.5">

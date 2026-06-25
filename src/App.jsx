@@ -20,7 +20,7 @@ import Footer from "./components/Footer";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 import BookDetail from "./components/BookDetail";
 import EventDetail from "./components/EventDetail";
-import PaymentModal from "./components/PaymentModal";
+import CheckoutPage from "./pages/CheckoutPage";
 import StaticPage from "./components/StaticPage";
 import "./App.css";
 
@@ -41,7 +41,7 @@ function AppOverlays() {
   );
 }
 
-function HomeLayout({ showPaymentModal }) {
+function HomeLayout() {
   const location = useLocation();
 
   // Handle scroll-to anchor navigation
@@ -84,8 +84,6 @@ function HomeLayout({ showPaymentModal }) {
       <AboutAuthor />
       <SubscriptionPlans />
       <Footer />
-
-      {showPaymentModal && <PaymentModal />}
     </>
   );
 }
@@ -104,7 +102,7 @@ function App() {
             <Route path="/library"                          element={<LibraryPage />} />
             <Route path="/book/:id"                         element={<BookDetail />} />
             <Route path="/event/:id"                        element={<EventDetail />} />
-            <Route path="/payment/:type/:itemName/:price"   element={<HomeLayout showPaymentModal={true} />} />
+            <Route path="/payment/:type/:itemName/:price"   element={<CheckoutPage />} />
 
             {/* Footer Static Pages */}
             <Route path="/help"     element={<StaticPage title="Help Center" />} />

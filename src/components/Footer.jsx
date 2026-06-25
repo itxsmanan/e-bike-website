@@ -1,20 +1,27 @@
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube, FaWhatsapp } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
+import { useAuth } from '../context/AuthContext';
 
 const socials = [
-    { icon: <FaFacebookF />, label: 'Facebook', color: '#1877F2', href: '#' },
-    { icon: <FaInstagram />, label: 'Instagram', color: '#E1306C', href: '#' },
-    { icon: <FaYoutube />, label: 'YouTube', color: '#FF0000', href: '#' },
-    { icon: <FaWhatsapp />, label: 'WhatsApp', color: '#25D366', href: '#' },
-    { icon: <FaTwitter />, label: 'Twitter', color: '#1DA1F2', href: '#' },
+    { icon: <FaFacebookF />, label: 'Facebook', color: '#1877F2', href: 'https://www.facebook.com/share/18vdJmDF1i/' },
+    { icon: <FaInstagram />, label: 'Instagram', color: '#E1306C', href: 'https://www.instagram.com/kitabonkidolat?igsh=cTV5amZrcmV4ZjNy' },
+    { icon: <FaTiktok />, label: 'TikTok', color: '#000000', href: 'https://www.tiktok.com/@kitabon.ki.dolat?_r=1&_t=ZS-96fIBOm3b3V' },
+    { icon: <FaWhatsapp />, label: 'WhatsApp', color: '#25D366', href: 'https://wa.me/923355495173' },
 ];
 
 export default function Footer() {
     const navigate = useNavigate();
     const location = useLocation();
+    const { isLoggedIn, openAuthModal } = useAuth();
 
     const handleScroll = (e, targetId) => {
         e.preventDefault();
+
+        if (targetId === 'subscriptions' && !isLoggedIn) {
+            openAuthModal();
+            return;
+        }
+
         if (location.pathname !== '/') {
             navigate('/', { state: { scrollTo: targetId } });
         } else {
@@ -55,6 +62,8 @@ export default function Footer() {
                                 aria-label={s.label}
                                 className="footer-social-btn"
                                 style={{ '--social-color': s.color }}
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
                                 {s.icon}
                             </a>

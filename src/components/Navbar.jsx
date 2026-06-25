@@ -197,7 +197,23 @@ export default function Navbar() {
                         </li>
                     )}
                     {!isSubscribed && (
-                        <li><a href="#subscriptions" className="btn-primary" onClick={(e) => handleNavClick(e, 'subscriptions')}>Subscribe</a></li>
+                        <li>
+                            <a
+                                href="#subscriptions"
+                                className="btn-primary"
+                                onClick={(e) => {
+                                    if (!isLoggedIn) {
+                                        e.preventDefault();
+                                        setMenuOpen(false);
+                                        openAuthModal();
+                                        return;
+                                    }
+                                    handleNavClick(e, 'subscriptions');
+                                }}
+                            >
+                                Subscribe
+                            </a>
+                        </li>
                     )}
                     {!isLoggedIn && (
                         <li className="sm:hidden">

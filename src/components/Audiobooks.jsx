@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaHeadphones, FaMicrophone } from 'react-icons/fa';
+import { useAuth } from '../context/AuthContext';
 
 const audiobooksList = [
     {
@@ -9,7 +11,7 @@ const audiobooksList = [
         duration: '8 hrs 32 min',
         genre: 'Fiction • Thriller',
         price: 899,
-        coverIcon: '🎧',
+        coverIcon: <FaHeadphones />,
         waveColor: '#C9A962',
     },
     {
@@ -19,7 +21,7 @@ const audiobooksList = [
         duration: '6 hrs 15 min',
         genre: 'Self-Help • Business',
         price: 1199,
-        coverIcon: '🎙️',
+        coverIcon: <FaMicrophone />,
         waveColor: '#D4664A',
     },
 ];
@@ -36,6 +38,7 @@ function WaveAnimation({ active, color }) {
 
 export default function Audiobooks() {
     const navigate = useNavigate();
+    const { isLoggedIn, isSubscribed, openAuthModal } = useAuth();
     const [playingId, setPlayingId] = useState(null);
     const sectionRef = useRef(null);
     const [inView, setInView] = useState(false);
@@ -58,7 +61,32 @@ export default function Audiobooks() {
         return () => observer.disconnect();
     }, []);
 
-    const togglePlay = (id) => setPlayingId(prev => prev === id ? null : id);
+    const goToAudioCheckout = (item) => {
+        navigate(`/payment/audio/${encodeURIComponent(item.title + ' Audiobook')}/${item.price}`);
+    };
+
+    const togglePlay = (item) => {
+        if (!isLoggedIn) {
+            openAuthModal();
+            return;
+        }
+
+        if (!isSubscribed) {
+            goToAudioCheckout(item);
+            return;
+        }
+
+        setPlayingId(prev => prev === item.id ? null : item.id);
+    };
+
+    const handleBuyAudio = (item) => {
+        if (!isLoggedIn) {
+            openAuthModal();
+            return;
+        }
+
+        goToAudioCheckout(item);
+    };
 
     return (
         <section ref={sectionRef} className="section audiobooks-section" id="audiobooks">
@@ -95,7 +123,7 @@ export default function Audiobooks() {
                                     <button
                                         className={`btn-play ${isPlaying ? 'btn-play-active' : ''}`}
                                         type="button"
-                                        onClick={() => togglePlay(item.id)}
+                                        onClick={() => togglePlay(item)}
                                         aria-label={isPlaying ? `Pause ${item.title}` : `Play ${item.title}`}
                                     >
                                         {isPlaying ? (
@@ -124,7 +152,7 @@ export default function Audiobooks() {
                                     className="btn-primary"
                                     style={{ padding: '0.55rem 1.25rem', fontSize: '0.85rem' }}
                                     type="button"
-                                    onClick={() => navigate(`/payment/audio/${encodeURIComponent(item.title + ' Audiobook')}/${item.price}`)}
+                                    onClick={() => handleBuyAudio(item)}
                                 >
                                     Buy Now
                                 </button>

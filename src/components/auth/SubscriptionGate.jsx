@@ -235,7 +235,7 @@ export default function SubscriptionGate() {
               {loading ? (
                 <><Spinner /> Activating subscription…</>
               ) : (
-                <><FiZap size={16} /> Subscribe Now — Rs. 2,399</>
+                <><FiZap size={16} /> Buy Now — Rs. 2,399</>
               )}
             </button>
           )}

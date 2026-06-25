@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaStar, FaRegStar, FaBoxOpen, FaTruck, FaLock, FaCheckCircle } from 'react-icons/fa';
+import { FaArrowLeft, FaStar, FaRegStar, FaBoxOpen, FaTruck, FaLock, FaCheckCircle, FaBook } from 'react-icons/fa';
 import { books } from '../data/booksData';
 import BookActionButtons from './library/BookActionButtons';
 
@@ -58,7 +58,7 @@ export default function BookDetail() {
                             {book.cover && (book.cover.startsWith('data:') || book.cover.startsWith('http') || book.cover.length > 5) ? (
                                 <img src={book.cover} alt={book.title} className="book-cover-img" />
                             ) : (
-                                <div className="placeholder-cover">{book.cover}</div>
+                                <div className="placeholder-cover"><FaBook style={{ fontSize: '6rem', opacity: 0.5 }} /></div>
                             )}
                         </div>
                     </div>

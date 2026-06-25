@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { books } from '../data/booksData';
 import BookActionButtons from './library/BookActionButtons';
+import { FaBook } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
@@ -68,7 +69,7 @@ export default function FeaturedBooks() {
                                 {book.cover && (book.cover.startsWith('data:') || book.cover.startsWith('http') || book.cover.length > 5) ? (
                                     <img src={book.cover} alt={book.title} />
                                 ) : (
-                                    <span style={{ fontSize: '5rem', lineHeight: 1 }}>{book.cover}</span>
+                                    <span style={{ fontSize: '5rem', lineHeight: 1, opacity: 0.5 }}><FaBook /></span>
                                 )}
 
                                 {/* Hover overlay */}

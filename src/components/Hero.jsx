@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { FaUserTie, FaUserGraduate, FaUserNinja, FaUserAstronaut, FaUserSecret } from 'react-icons/fa';
+import { FaUserTie, FaUserGraduate, FaUserNinja, FaUserAstronaut, FaUserSecret, FaBook, FaStar, FaGlobe } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import TextType from './TextType';
 import heroIllustration from '../assets/hero_illustration.jpg';
 
-/* ── Helpers ───────────────────────────────────────────────── */
 // Splits a string into animated <span> words
 // Framer Motion word animation variant
 const wordVariants = {
@@ -160,15 +159,15 @@ function BookVector() {
 
             {/* Floating stat chips */}
             <div className="hero-stat hero-stat-tl">
-                <span className="hero-stat-icon">📚</span>
+                <span className="hero-stat-icon"><FaBook /></span>
                 <div>
-                    <strong>500+</strong>
-                    <span>Curated Books</span>
+                    <strong>4</strong>
+                    <span>Books</span>
                 </div>
             </div>
 
             <div className="hero-stat hero-stat-br">
-                <span className="hero-stat-icon">⭐</span>
+                <span className="hero-stat-icon"><FaStar /></span>
                 <div>
                     <strong>4.9</strong>
                     <span>Avg Rating</span>
@@ -176,9 +175,9 @@ function BookVector() {
             </div>
 
             <div className="hero-stat hero-stat-tr">
-                <span className="hero-stat-icon">🌍</span>
+                <span className="hero-stat-icon"><FaGlobe /></span>
                 <div>
-                    <strong>50K+</strong>
+                    <strong>10K+</strong>
                     <span>Readers</span>
                 </div>
             </div>
@@ -317,7 +316,7 @@ export default function Hero() {
                         <div className="hero-trust-info">
                             <div className="hero-trust-stars">{'★★★★★'}</div>
                             <div className="hero-trust-text">
-                                <strong>50,000+</strong> happy readers across Pakistan
+                                <strong>10,000+</strong> happy readers across Pakistan
                             </div>
                         </div>
                     </div>

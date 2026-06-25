@@ -1,36 +1,38 @@
+import { FaMobileAlt, FaMoon, FaPen, FaChartBar, FaComments, FaGift } from 'react-icons/fa';
+
 const features = [
     {
-        icon: '📱',
+        icon: <FaMobileAlt />,
         title: 'Multi-Device Sync',
         desc: 'Read on phone, tablet, or computer. Your progress syncs automatically across all devices.',
         gradient: 'linear-gradient(135deg,rgba(201,169,98,0.15),rgba(201,169,98,0.05))',
     },
     {
-        icon: '🌙',
+        icon: <FaMoon />,
         title: 'Night Mode',
         desc: 'Eye-friendly dark mode with customizable fonts and spacing for comfortable reading anytime.',
         gradient: 'linear-gradient(135deg,rgba(99,102,241,0.15),rgba(99,102,241,0.05))',
     },
     {
-        icon: '✏️',
+        icon: <FaPen />,
         title: 'Smart Annotations',
         desc: 'Highlight passages, make notes, and bookmark pages. Export your reading notes anytime.',
         gradient: 'linear-gradient(135deg,rgba(212,102,74,0.15),rgba(212,102,74,0.05))',
     },
     {
-        icon: '📊',
+        icon: <FaChartBar />,
         title: 'Reading Analytics',
         desc: 'Track reading habits, set goals, and earn achievements as you complete books.',
         gradient: 'linear-gradient(135deg,rgba(34,211,238,0.12),rgba(34,211,238,0.04))',
     },
     {
-        icon: '💬',
+        icon: <FaComments />,
         title: 'Reader Community',
         desc: 'Join discussions, share reviews, and connect with fellow readers who love the same books.',
         gradient: 'linear-gradient(135deg,rgba(168,85,247,0.15),rgba(168,85,247,0.05))',
     },
     {
-        icon: '🎁',
+        icon: <FaGift />,
         title: 'Gift Books',
         desc: 'Send books as gifts with personalized messages. Perfect for birthdays and special occasions.',
         gradient: 'linear-gradient(135deg,rgba(52,211,153,0.12),rgba(52,211,153,0.04))',

@@ -4,6 +4,7 @@ import { Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { useAuth } from '../context/AuthContext';
 
 const defaultPlans = [
     {
@@ -34,7 +35,7 @@ const defaultPlans = [
             "Exclusive Q&As",
             "10% off print books"
         ],
-        btnText: "Subscribe Now",
+        btnText: "Buy Now",
         isGold: false,
         isPopular: false
     },
@@ -67,7 +68,7 @@ const defaultPlans = [
             "Gift 1 month to friend",
             "25% off print books"
         ],
-        btnText: "Subscribe Now",
+        btnText: "Buy Now",
         isGold: false,
         isPopular: false
     },
@@ -92,6 +93,7 @@ const defaultPlans = [
 
 export default function SubscriptionPlans() {
     const navigate = useNavigate();
+    const { isLoggedIn, openAuthModal } = useAuth();
 
     let plans = defaultPlans;
     try {
@@ -105,7 +107,17 @@ export default function SubscriptionPlans() {
         plans = defaultPlans;
     }
 
+    plans = plans.map((plan) => ({
+        ...plan,
+        btnText: plan.btnText === "Subscribe Now" ? "Buy Now" : plan.btnText,
+    }));
+
     const handleSubscribe = (name, price) => {
+        if (!isLoggedIn) {
+            openAuthModal();
+            return;
+        }
+
         navigate(`/payment/sub/${encodeURIComponent(name + ' Subscription')}/${price}`);
     };
 

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import { FaHeart, FaBookOpen, FaClock } from 'react-icons/fa';
 
 const statsData = [
-    { number: '100+', label: 'Published Books', icon: '📚' },
-    { number: '50K+', label: 'Happy Readers',   icon: '❤️' },
-    { number: '4',    label: 'E-Books Live',     icon: '📱' },
-    { number: '24/7', label: 'Library Access',   icon: '🌙' },
+    { number: '10K+', label: 'Happy Readers',   icon: <FaHeart /> },
+    { number: '4',    label: 'E-Books Live',     icon: <FaBookOpen /> },
+    { number: '24/7', label: 'Library Access',   icon: <FaClock /> },
 ];
 
 export default function Stats() {

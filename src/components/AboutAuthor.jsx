@@ -1,47 +1,99 @@
-const achievements = [
-    { number: '100+', label: 'Published Works' },
-    { number: '50K+', label: 'Lives Touched' },
-    { number: '10+',  label: 'Years Writing' },
-    { number: '4+',   label: 'Literary Awards' },
+import { FaBookOpen, FaBriefcase, FaMapMarkerAlt, FaQuoteLeft } from 'react-icons/fa';
+import authorPhoto from '../assets/Dolat khan.jpeg';
+
+const authorBooks = [
+    {
+        title: 'The Power of Minor Shift',
+        text: 'A confession, a recovery, and a guide for anyone standing at a crossroads they did not choose.',
+    },
+    {
+        title: 'The Surviving Age',
+        text: 'A raw portrait of the invisible middle-class war: being seen, surviving, and still trying to breathe.',
+    },
+    {
+        title: 'Before I Learned to Live',
+        text: 'A novel about Arlo, broken by love, rebuilt by life, and brave enough to open his heart again.',
+    },
+    {
+        title: 'Two Bags, No Plan',
+        text: 'A joyful travel memoir about chaos, accidental wisdom, and the freedom of letting life happen.',
+    },
+];
+
+const bioSections = [
+    {
+        eyebrow: 'The Beginning',
+        text: 'There are writers who choose writing. And then there are those whom life chooses - who arrive at the page not because they planned to, but because they had no other honest option left. Dolat Khan Kakar belongs to the second kind.',
+    },
+    {
+        eyebrow: 'Quetta, Balochistan',
+        text: 'Born and raised in Quetta, Balochistan - a city of quiet resilience, ancient culture, and unspoken struggles - Dolat grew up watching capable people fall short of their own potential. Not because they lacked intelligence or ambition, but because life had pulled them away from themselves. Distracted. Unfocused. Lost somewhere between survival and the dream of something better.',
+    },
+    {
+        eyebrow: 'The Turning Point',
+        text: 'In his mid-twenties, while completing his final year of law school, Dolat experienced a deeply personal and transformative moment that changed the direction of his life. He does not speak about it in interviews. He wrote it into a book. The Power of Minor Shift was born from the realization that life changes through small, deliberate shifts made consistently, even when everything around you is falling apart.',
+    },
+    {
+        eyebrow: 'A Human Philosophy',
+        text: 'Four books. Four different worlds. But one unwavering belief runs through all of them: every human being, regardless of where they come from or what they have been through, is capable of far more than they are currently living. The problem is never ability. The problem is always distraction.',
+    },
+    {
+        eyebrow: 'Writing For The World',
+        text: 'Dolat writes in English by deliberate choice. The struggles he writes about - middle-class pressure, a broken heart, the hunger to grow, and the joy of an unplanned adventure - are not only Pakistani problems. They are human problems. They exist in Quetta and Karachi, but also in London, Nairobi, Toronto, and Jakarta.',
+    },
+    {
+        eyebrow: 'Kitabon Ki Dolat',
+        text: 'Through Kitabon Ki Dolat, Dolat has built more than a platform. He has built a philosophy: reading is not a luxury or a hobby, but the single most powerful act of self-investment a person can make. In a world of endless scrolling and shrinking attention spans, he stands firmly on the side of the page.',
+    },
 ];
 
 export default function AboutAuthor() {
     return (
-        <section className="section about-section" id="about">
-            <div className="about-author-content reveal">
+        <section className="section about-section about-author-modern" id="about">
+            <div className="about-modern-shell reveal">
+                <div className="about-modern-visual">
+                    <div className="about-photo-card">
+                        <img src={authorPhoto} alt="Dolat Khan Kakar" className="about-author-photo" />
+                    </div>
 
-                <div className="about-author-avatar-ring">
-                    <div className="about-author-avatar-ring-inner">✍️</div>
-                </div>
-
-                <div className="section-label" style={{ margin: '0 auto 1rem' }}>The Author</div>
-                <h2 className="section-title">Dolat Khan Kakar</h2>
-
-                <div className="about-quote">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--gold)" opacity="0.3" aria-hidden="true">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                    </svg>
-                </div>
-
-                <p>
-                    Dolat Khan Kakar is a celebrated Pakistani author, publisher, and advocate for literacy.
-                    His name, meaning <em>"wealth"</em> in Urdu, perfectly embodies his philosophy:
-                    true richness comes not from material possessions, but from the knowledge and wisdom
-                    found in books.
-                </p>
-                <p>
-                    With over 100 published works spanning fiction, non-fiction, poetry, and self-help,
-                    Dolat has touched the lives of 50,000+ readers across Pakistan and beyond. His mission
-                    is simple: make quality literature accessible to every Pakistani household.
-                </p>
-
-                <div className="about-achievements">
-                    {achievements.map((a, i) => (
-                        <div key={i} className="achievement-item">
-                            <span className="achievement-number">{a.number}</span>
-                            <span className="achievement-label">{a.label}</span>
+                    <div className="about-identity-card">
+                        <span className="section-label">The Author</span>
+                        <h2>Dolat Khan Kakar</h2>
+                        <div className="about-meta-list">
+                            <span><FaBookOpen /> Author</span>
+                            <span><FaBriefcase /> Lawyer</span>
+                            <span><FaMapMarkerAlt /> Quetta, Balochistan</span>
                         </div>
-                    ))}
+                    </div>
+                </div>
+
+                <div className="about-modern-copy">
+                    <div className="about-quote-card">
+                        <FaQuoteLeft className="about-quote-icon" />
+                        <p>"Everyone is capable. The only thing standing between them and their potential is distraction."</p>
+                    </div>
+
+                    <div className="about-intro-copy">
+                        {bioSections.map((section) => (
+                            <article className="about-bio-block" key={section.eyebrow}>
+                                <span>{section.eyebrow}</span>
+                                <p>{section.text}</p>
+                            </article>
+                        ))}
+                    </div>
+
+                    <div className="about-book-grid">
+                        {authorBooks.map((book) => (
+                            <article className="about-book-note" key={book.title}>
+                                <h3>{book.title}</h3>
+                                <p>{book.text}</p>
+                            </article>
+                        ))}
+                    </div>
+
+                    <div className="about-closing-quote">
+                        "When you read, you think. When you think, you grow. When you grow - nothing can stop you."
+                    </div>
                 </div>
             </div>
         </section>

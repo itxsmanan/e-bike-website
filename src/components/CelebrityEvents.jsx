@@ -2,9 +2,20 @@ import { useNavigate } from 'react-router-dom';
 import { events } from '../data/eventsData';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+import { FaCamera, FaFilm, FaUniversity, FaPenNib, FaUser } from 'react-icons/fa';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+
+const getEventIcon = (emoji) => {
+    switch (emoji) {
+        case '📸': return <FaCamera />;
+        case '🎬': return <FaFilm />;
+        case '🏛️': return <FaUniversity />;
+        case '✍️': return <FaPenNib />;
+        default: return <FaCamera />;
+    }
+};
 
 export default function CelebrityEvents() {
     const navigate = useNavigate();
@@ -68,7 +79,7 @@ export default function CelebrityEvents() {
                                         {coverImg ? (
                                             <img src={coverImg} alt={event.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                         ) : (
-                                            <span style={{ fontSize: '4.5rem' }}>{event.imageIcon}</span>
+                                             <span style={{ fontSize: '4.5rem', opacity: 0.7, display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>{getEventIcon(event.imageIcon)}</span>
                                         )}
                                         <div className="event-image-overlay" />
                                         <span className="event-date-badge">{event.badgeDate}</span>
@@ -78,7 +89,7 @@ export default function CelebrityEvents() {
                                         <h3 className="event-title">{event.title}</h3>
 
                                         <div className="event-celebrity">
-                                            <div className="celebrity-avatar">{event.celebrity.avatar}</div>
+                                            <div className="celebrity-avatar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><FaUser style={{ opacity: 0.6 }} /></div>
                                             <div className="celebrity-info">
                                                 <h4>{event.celebrity.name}</h4>
                                                 <p className="celebrity-title">{event.celebrity.title}</p>
