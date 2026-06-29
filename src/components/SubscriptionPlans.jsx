@@ -46,10 +46,10 @@ const defaultPlans = [
         saveText: "Save 20% \u2022 Rs. 400/month",
         features: [
             "Everything in Quarterly",
+            "Audiobook collection access",
             "1 signed paperback free",
             "Private community access",
             "Reading analytics",
-            "20% off print books"
         ],
         btnText: "Best Value",
         isGold: true,

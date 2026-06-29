@@ -42,7 +42,7 @@ const BookThumb = () => (
 export default function CheckoutPage() {
     const { type, itemName, price } = useParams();
     const navigate = useNavigate();
-    const { isLoggedIn, openAuthModal, subscribe } = useAuth();
+    const { user, isLoggedIn, openAuthModal, subscribe } = useAuth();
 
     const decodedItemName = itemName ? decodeURIComponent(itemName) : 'Kitabon Ki Dolat';
     const parsedPrice = parseFloat(price) || 4500;
@@ -55,6 +55,16 @@ export default function CheckoutPage() {
     const [step, setStep] = useState('checkout');
     const [method, setMethod] = useState('easypaisa');
     const [phone, setPhone] = useState('');
+    const [delivery, setDelivery] = useState({
+        fullName: user?.name || '',
+        email: user?.email || '',
+        contactPhone: '',
+        address: '',
+        city: '',
+        province: '',
+        postalCode: '',
+        notes: '',
+    });
     const [otp, setOtp] = useState(['', '', '', '', '']);
     const [countdown, setCountdown] = useState(45);
     const [isVerifying, setIsVerifying] = useState(false);
@@ -65,11 +75,11 @@ export default function CheckoutPage() {
     }, []);
 
     useEffect(() => {
-        if ((type === 'sub' || type === 'audio') && !isLoggedIn) {
+        if (!isLoggedIn) {
             openAuthModal();
             navigate('/', { replace: true });
         }
-    }, [type, isLoggedIn, openAuthModal, navigate]);
+    }, [isLoggedIn, openAuthModal, navigate]);
 
     useEffect(() => {
         if (step !== 'otp') return undefined;
@@ -89,6 +99,13 @@ export default function CheckoutPage() {
     const handlePhone = (event) => {
         const raw = event.target.value.replace(/\D/g, '').slice(0, 10);
         setPhone(raw);
+    };
+
+    const updateDelivery = (field, value) => {
+        const nextValue = field === 'contactPhone'
+            ? value.replace(/\D/g, '').slice(0, 11)
+            : value;
+        setDelivery((current) => ({ ...current, [field]: nextValue }));
     };
 
     const handleOtpChange = (index, value) => {
@@ -131,6 +148,65 @@ export default function CheckoutPage() {
                     await subscribe();
                 } catch (_) {}
             }
+
+            const now = new Date();
+            const customerName = !isDigitalProduct && delivery.fullName.trim()
+                ? delivery.fullName.trim()
+                : user?.name || 'Guest Reader';
+            const customerEmail = !isDigitalProduct && delivery.email.trim()
+                ? delivery.email.trim()
+                : user?.email || 'guest@kitabonkidolat.com';
+            const customerPhone = !isDigitalProduct && delivery.contactPhone.trim()
+                ? delivery.contactPhone.trim()
+                : `+92 ${phone}`;
+            const paymentRecord = {
+                id: `pay-${now.getTime()}`,
+                transactionId: `KKD-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${String(now.getTime()).slice(-6)}`,
+                customerName,
+                customerEmail,
+                phone: `+92 ${phone}`,
+                itemName: decodedItemName,
+                itemType: isSubscription ? 'Subscription' : isAudio ? 'Audiobook' : 'Book',
+                method: selectedMethodName,
+                subtotal: parsedPrice,
+                shipping,
+                amount: total,
+                status: 'Paid',
+                date: now.toISOString().split('T')[0],
+                createdAt: now.toISOString(),
+            };
+            const existingPayments = JSON.parse(localStorage.getItem('kitabon_payments') || '[]');
+            localStorage.setItem('kitabon_payments', JSON.stringify([paymentRecord, ...existingPayments]));
+
+            if (!isDigitalProduct) {
+                const orderRecord = {
+                    id: `ord-${now.getTime()}`,
+                    orderNumber: `ORD-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${String(now.getTime()).slice(-6)}`,
+                    paymentId: paymentRecord.id,
+                    transactionId: paymentRecord.transactionId,
+                    customerName,
+                    customerEmail,
+                    phone: customerPhone,
+                    bookTitle: decodedItemName.replace(/\s*\(Hard Copy\)\s*$/i, ''),
+                    quantity: 1,
+                    subtotal: parsedPrice,
+                    shipping,
+                    total,
+                    paymentMethod: selectedMethodName,
+                    paymentStatus: 'Paid',
+                    orderStatus: 'Processing',
+                    shippingAddress: delivery.address.trim(),
+                    city: delivery.city.trim(),
+                    province: delivery.province.trim(),
+                    postalCode: delivery.postalCode.trim(),
+                    notes: delivery.notes.trim(),
+                    date: paymentRecord.date,
+                    createdAt: paymentRecord.createdAt,
+                };
+                const existingOrders = JSON.parse(localStorage.getItem('kitabon_orders') || '[]');
+                localStorage.setItem('kitabon_orders', JSON.stringify([orderRecord, ...existingOrders]));
+            }
+
             setIsVerifying(false);
             setStep('success');
             setTimeout(() => navigate(type === 'sub' ? '/library' : '/'), 4000);
@@ -294,8 +370,110 @@ export default function CheckoutPage() {
                         <div className="ck-panel-head">
                             <span className="ck-step-pill">Step 1 of 2</span>
                             <h2>Select payment method</h2>
-                            <p>Choose your wallet and enter the number linked with your account.</p>
+                            <p>
+                                {isDigitalProduct
+                                    ? 'Choose your wallet and enter the number linked with your account.'
+                                    : 'Enter delivery details, then choose your wallet to complete the order.'}
+                            </p>
                         </div>
+
+                        {!isDigitalProduct && (
+                            <section className="ck-delivery-card">
+                                <div className="ck-delivery-head">
+                                    <span>Delivery details</span>
+                                    <strong>Where should we send your book?</strong>
+                                </div>
+
+                                <div className="ck-delivery-grid two">
+                                    <label>
+                                        Full name
+                                        <input
+                                            type="text"
+                                            value={delivery.fullName}
+                                            onChange={(event) => updateDelivery('fullName', event.target.value)}
+                                            placeholder="Your full name"
+                                            required
+                                        />
+                                    </label>
+                                    <label>
+                                        Email address
+                                        <input
+                                            type="email"
+                                            value={delivery.email}
+                                            onChange={(event) => updateDelivery('email', event.target.value)}
+                                            placeholder="name@email.com"
+                                            required
+                                        />
+                                    </label>
+                                </div>
+
+                                <div className="ck-delivery-grid two">
+                                    <label>
+                                        Contact number
+                                        <input
+                                            type="tel"
+                                            value={delivery.contactPhone}
+                                            onChange={(event) => updateDelivery('contactPhone', event.target.value)}
+                                            placeholder="+92 300 1234567"
+                                            required
+                                        />
+                                    </label>
+                                    <label>
+                                        City
+                                        <input
+                                            type="text"
+                                            value={delivery.city}
+                                            onChange={(event) => updateDelivery('city', event.target.value)}
+                                            placeholder="Lahore"
+                                            required
+                                        />
+                                    </label>
+                                </div>
+
+                                <label className="ck-delivery-full">
+                                    Complete delivery address
+                                    <textarea
+                                        value={delivery.address}
+                                        onChange={(event) => updateDelivery('address', event.target.value)}
+                                        placeholder="House no, street, area, nearby landmark"
+                                        rows={3}
+                                        required
+                                    />
+                                </label>
+
+                                <div className="ck-delivery-grid two">
+                                    <label>
+                                        Province
+                                        <input
+                                            type="text"
+                                            value={delivery.province}
+                                            onChange={(event) => updateDelivery('province', event.target.value)}
+                                            placeholder="Punjab / Sindh / Balochistan"
+                                            required
+                                        />
+                                    </label>
+                                    <label>
+                                        Postal code
+                                        <input
+                                            type="text"
+                                            value={delivery.postalCode}
+                                            onChange={(event) => updateDelivery('postalCode', event.target.value)}
+                                            placeholder="Optional"
+                                        />
+                                    </label>
+                                </div>
+
+                                <label className="ck-delivery-full">
+                                    Delivery notes
+                                    <textarea
+                                        value={delivery.notes}
+                                        onChange={(event) => updateDelivery('notes', event.target.value)}
+                                        placeholder="Any instruction for delivery rider"
+                                        rows={2}
+                                    />
+                                </label>
+                            </section>
+                        )}
 
                         <div className="ck-methods">
                             <label

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { books } from '../data/booksData';
 import BookActionButtons from './library/BookActionButtons';
@@ -11,6 +12,7 @@ import 'swiper/css/navigation';
 
 export default function FeaturedBooks() {
     const navigate = useNavigate();
+    const [languageFilter, setLanguageFilter] = useState('All');
 
     return (
         <section className="section" id="books">
@@ -22,6 +24,26 @@ export default function FeaturedBooks() {
                     <p className="section-subtitle">
                         Discover stories, wisdom, and knowledge from one of Pakistan's finest authors
                     </p>
+                    <div className="language-tabs" style={{ display: 'flex', gap: '10px', marginTop: '1rem' }}>
+                        {['All', 'English', 'Urdu'].map(lang => (
+                            <button
+                                key={lang}
+                                onClick={() => setLanguageFilter(lang)}
+                                style={{
+                                    padding: '0.5rem 1.5rem',
+                                    borderRadius: '30px',
+                                    border: '1px solid var(--gold)',
+                                    background: languageFilter === lang ? 'var(--gold)' : 'transparent',
+                                    color: languageFilter === lang ? 'var(--midnight)' : 'var(--text)',
+                                    cursor: 'pointer',
+                                    fontWeight: '500',
+                                    transition: 'all 0.3s ease'
+                                }}
+                            >
+                                {lang}
+                            </button>
+                        ))}
+                    </div>
                 </div>
                 <div className="modern-slider-nav">
                     <button className="nav-btn books-prev" aria-label="Previous books">
@@ -34,6 +56,7 @@ export default function FeaturedBooks() {
             </div>
 
             <Swiper
+                key={languageFilter}
                 modules={[Pagination, Navigation, Autoplay]}
                 spaceBetween={30}
                 slidesPerView={1}
@@ -51,10 +74,10 @@ export default function FeaturedBooks() {
                 className="books-swiper"
                 style={{ padding: '2rem 1rem 4rem 1rem' }}
             >
-                {Object.values(books).map((book, idx) => (
+                {Object.values(books).filter(book => languageFilter === 'All' || book.language === languageFilter).map((book, idx) => (
                     <SwiperSlide key={book.id}>
                         <div
-                            className="book-card reveal"
+                            className="book-card reveal in-view"
                             style={{ transitionDelay: `${idx * 0.1}s` }}
                             onClick={() => navigate(`/book/${book.id}`)}
                             role="button"
@@ -88,7 +111,19 @@ export default function FeaturedBooks() {
                             </div>
 
                             <div className="book-info">
-                                <div className="book-category">{book.category}</div>
+                                <div className="book-category" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span>{book.category}</span>
+                                    <span style={{ 
+                                        backgroundColor: 'rgba(201,169,98,0.1)', 
+                                        color: 'var(--gold)', 
+                                        padding: '2px 8px', 
+                                        borderRadius: '12px', 
+                                        fontSize: '0.8rem',
+                                        fontWeight: 'bold'
+                                    }}>
+                                        {book.language}
+                                    </span>
+                                </div>
                                 <h3 className="book-title">{book.title}</h3>
                                 <p className="book-author">by {book.author}</p>
 

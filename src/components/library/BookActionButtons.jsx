@@ -55,7 +55,7 @@ export default function BookActionButtons({ book, variant = 'detail' }) {
     await new Promise((r) => setTimeout(r, 900));
     startReading(book);
     setReadLoading(false);
-    navigate('/library');
+    navigate(`/reader/${book.id}`);
   };
 
   // ── Handle bookmark toggle ───────────────────────────────────────────────────

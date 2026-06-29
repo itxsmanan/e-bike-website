@@ -1,6 +1,102 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FaHeadset, FaEnvelope, FaPhone, FaMapMarkerAlt, FaChevronDown, FaPaperPlane, FaTruck, FaUndo, FaShieldAlt, FaFileContract } from 'react-icons/fa';
 import Footer from './Footer';
+
+function ContactForm() {
+    const [form, setForm] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+    });
+    const [submitted, setSubmitted] = useState(false);
+
+    const updateField = (field, value) => {
+        setSubmitted(false);
+        setForm((prev) => ({ ...prev, [field]: value }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const inquiry = {
+            id: `inq-${Date.now()}`,
+            name: form.name.trim(),
+            email: form.email.trim(),
+            phone: form.phone.trim(),
+            subject: form.subject.trim(),
+            message: form.message.trim(),
+            date: new Date().toISOString().split('T')[0],
+            status: 'Pending',
+            source: 'Website Contact Form',
+        };
+
+        const existing = JSON.parse(localStorage.getItem('kitabon_inquiries') || '[]');
+        localStorage.setItem('kitabon_inquiries', JSON.stringify([inquiry, ...existing]));
+        setForm({ name: '', email: '', phone: '', subject: '', message: '' });
+        setSubmitted(true);
+    };
+
+    return (
+        <form className="md:col-span-7 flex flex-col gap-4" onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input
+                    type="text"
+                    className="w-full px-4 py-3 bg-midnight/35 border border-border-custom/80 focus:border-gold focus:ring-1 focus:ring-gold rounded-xl text-text-body placeholder:text-text-muted transition-all outline-none text-sm"
+                    placeholder="Your Name"
+                    value={form.name}
+                    onChange={(e) => updateField('name', e.target.value)}
+                    required
+                />
+                <input
+                    type="email"
+                    className="w-full px-4 py-3 bg-midnight/35 border border-border-custom/80 focus:border-gold focus:ring-1 focus:ring-gold rounded-xl text-text-body placeholder:text-text-muted transition-all outline-none text-sm"
+                    placeholder="Your Email"
+                    value={form.email}
+                    onChange={(e) => updateField('email', e.target.value)}
+                    required
+                />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input
+                    type="tel"
+                    className="w-full px-4 py-3 bg-midnight/35 border border-border-custom/80 focus:border-gold focus:ring-1 focus:ring-gold rounded-xl text-text-body placeholder:text-text-muted transition-all outline-none text-sm"
+                    placeholder="Phone Number"
+                    value={form.phone}
+                    onChange={(e) => updateField('phone', e.target.value)}
+                />
+                <input
+                    type="text"
+                    className="w-full px-4 py-3 bg-midnight/35 border border-border-custom/80 focus:border-gold focus:ring-1 focus:ring-gold rounded-xl text-text-body placeholder:text-text-muted transition-all outline-none text-sm"
+                    placeholder="Subject"
+                    value={form.subject}
+                    onChange={(e) => updateField('subject', e.target.value)}
+                    required
+                />
+            </div>
+            <textarea
+                className="w-full px-4 py-3 bg-midnight/35 border border-border-custom/80 focus:border-gold focus:ring-1 focus:ring-gold rounded-xl text-text-body placeholder:text-text-muted transition-all outline-none text-sm"
+                rows={5}
+                placeholder="Your Message"
+                value={form.message}
+                onChange={(e) => updateField('message', e.target.value)}
+                required
+                style={{ resize: 'none' }}
+            />
+            {submitted && (
+                <p className="rounded-xl border border-emerald-400/25 bg-emerald-400/10 px-4 py-3 text-sm font-semibold text-emerald-300">
+                    Message sent. Your inquiry is now available in the admin inquiries list.
+                </p>
+            )}
+            <button
+                type="submit"
+                className="w-full py-3.5 bg-gold hover:bg-gold-bright active:translate-y-0.5 text-midnight font-bold rounded-xl shadow-lg shadow-gold/10 hover:shadow-xl hover:shadow-gold/25 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer text-sm uppercase tracking-wider"
+            >
+                <FaPaperPlane className="text-xs" /> Send Message
+            </button>
+        </form>
+    );
+}
 
 const pageData = {
     'Help Center': {
@@ -41,8 +137,8 @@ const pageData = {
                     <p className="text-text-dim text-sm md:text-base leading-relaxed">Once you subscribe via JazzCash, you get instant access to our entire e-book library on any device.</p>
                 </div>
                 <div className="border-b border-border-custom/50 pb-5 last:border-none last:pb-0 group">
-                    <h4 className="text-text-body group-hover:text-gold font-bold text-lg mb-2 transition-colors duration-200">Do you offer Cash on Delivery (COD)?</h4>
-                    <p className="text-text-dim text-sm md:text-base leading-relaxed">Yes, we offer Cash on Delivery for all physical book orders nationwide.</p>
+                    <h4 className="text-text-body group-hover:text-gold font-bold text-lg mb-2 transition-colors duration-200">Is delivery available for book orders?</h4>
+                    <p className="text-text-dim text-sm md:text-base leading-relaxed">Yes, delivery is available nationwide for orders paid through online payment methods.</p>
                 </div>
                 <div className="border-b border-border-custom/50 pb-5 last:border-none last:pb-0 group">
                     <h4 className="text-text-body group-hover:text-gold font-bold text-lg mb-2 transition-colors duration-200">Can I return a damaged book?</h4>
@@ -74,7 +170,7 @@ const pageData = {
                         </div>
                         <div>
                             <h4 className="text-text-body font-bold text-base mb-1">Phone</h4>
-                            <p className="text-text-dim text-sm leading-relaxed">+92 300 0000000</p>
+                            <p className="text-text-dim text-sm leading-relaxed">03410889909</p>
                         </div>
                     </div>
 
@@ -84,45 +180,13 @@ const pageData = {
                         </div>
                         <div>
                             <h4 className="text-text-body font-bold text-base mb-1">Email</h4>
-                            <p className="text-text-dim text-sm leading-relaxed">support@kitabonkidolat.pk</p>
+                            <p className="text-text-dim text-sm leading-relaxed">readersshub@gmail.com</p>
                         </div>
                     </div>
                 </div>
 
                 {/* Form Block */}
-                <form className="md:col-span-7 flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
-                    <div>
-                        <input 
-                            type="text" 
-                            className="w-full px-4 py-3 bg-midnight/35 border border-border-custom/80 focus:border-gold focus:ring-1 focus:ring-gold rounded-xl text-text-body placeholder:text-text-muted transition-all outline-none text-sm" 
-                            placeholder="Your Name" 
-                            required 
-                        />
-                    </div>
-                    <div>
-                        <input 
-                            type="email" 
-                            className="w-full px-4 py-3 bg-midnight/35 border border-border-custom/80 focus:border-gold focus:ring-1 focus:ring-gold rounded-xl text-text-body placeholder:text-text-muted transition-all outline-none text-sm" 
-                            placeholder="Your Email" 
-                            required 
-                        />
-                    </div>
-                    <div>
-                        <textarea 
-                            className="w-full px-4 py-3 bg-midnight/35 border border-border-custom/80 focus:border-gold focus:ring-1 focus:ring-gold rounded-xl text-text-body placeholder:text-text-muted transition-all outline-none text-sm" 
-                            rows={5} 
-                            placeholder="Your Message" 
-                            required 
-                            style={{ resize: 'none' }}
-                        />
-                    </div>
-                    <button 
-                        type="submit"
-                        className="w-full py-3.5 bg-gold hover:bg-gold-bright active:translate-y-0.5 text-midnight font-bold rounded-xl shadow-lg shadow-gold/10 hover:shadow-xl hover:shadow-gold/25 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer text-sm uppercase tracking-wider"
-                    >
-                        <FaPaperPlane className="text-xs" /> Send Message
-                    </button>
-                </form>
+                <ContactForm />
             </div>
         )
     },
@@ -161,7 +225,7 @@ const pageData = {
                 </div>
                 <div>
                     <h3 className="text-text-body font-bold text-xl mb-3 border-l-4 border-gold pl-3">How to Initiate a Return</h3>
-                    <p className="text-text-dim text-sm md:text-base leading-relaxed">Please email support@kitabonkidolat.pk with your order number and photos of the issue. We will arrange a pickup or provide an address for return shipping.</p>
+                    <p className="text-text-dim text-sm md:text-base leading-relaxed">Please email readersshub@gmail.com with your order number and photos of the issue. We will arrange a pickup or provide an address for return shipping.</p>
                 </div>
             </div>
         )

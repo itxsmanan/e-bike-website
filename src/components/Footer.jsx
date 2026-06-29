@@ -6,7 +6,7 @@ const socials = [
     { icon: <FaFacebookF />, label: 'Facebook', color: '#1877F2', href: 'https://www.facebook.com/share/18vdJmDF1i/' },
     { icon: <FaInstagram />, label: 'Instagram', color: '#E1306C', href: 'https://www.instagram.com/kitabonkidolat?igsh=cTV5amZrcmV4ZjNy' },
     { icon: <FaTiktok />, label: 'TikTok', color: '#000000', href: 'https://www.tiktok.com/@kitabon.ki.dolat?_r=1&_t=ZS-96fIBOm3b3V' },
-    { icon: <FaWhatsapp />, label: 'WhatsApp', color: '#25D366', href: 'https://wa.me/923355495173' },
+    { icon: <FaWhatsapp />, label: 'WhatsApp', color: '#25D366', href: 'https://wa.me/923410889909' },
 ];
 
 export default function Footer() {

@@ -6,7 +6,7 @@ export default function BookSplash() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setVisible(false);
-        }, 3500); // reduced from 6s to 3.5s for better UX
+        }, 1200);
 
         return () => clearTimeout(timer);
     }, []);

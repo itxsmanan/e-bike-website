@@ -161,7 +161,7 @@ function ReadingCard({ book, onProgress, onFinish, onRemove }) {
           <button
             id={`continue-reading-${book.id}`}
             type="button"
-            onClick={() => navigate(`/book/${book.id}`)}
+            onClick={() => navigate(`/reader/${book.id}`)}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200"
             style={{ background: 'linear-gradient(135deg, var(--gold), var(--gold-bright))', color: '#0C1035' }}
           >
@@ -235,7 +235,7 @@ function SavedCard({ book, onRemove, onStartReading }) {
           <button
             id={`read-saved-${book.id}`}
             type="button"
-            onClick={() => { onStartReading(book); navigate('/library'); }}
+            onClick={() => { onStartReading(book); navigate(`/reader/${book.id}`); }}
             className="flex-1 text-xs py-2 rounded-lg font-semibold transition-all duration-200"
             style={{ background: 'linear-gradient(135deg, var(--gold), var(--gold-bright))', color: '#0C1035' }}
           >
@@ -287,7 +287,7 @@ function FinishedCard({ book, onReRead, onRemove }) {
           <button
             id={`reread-${book.id}`}
             type="button"
-            onClick={() => onReRead(book)}
+            onClick={() => { onReRead(book); navigate(`/reader/${book.id}`); }}
             className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200"
             style={{ background: 'rgba(201,169,98,0.1)', color: 'var(--gold)', border: '1px solid rgba(201,169,98,0.2)' }}
           >

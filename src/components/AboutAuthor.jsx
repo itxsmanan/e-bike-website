@@ -1,5 +1,12 @@
-import { FaBookOpen, FaBriefcase, FaMapMarkerAlt, FaQuoteLeft } from 'react-icons/fa';
+import { FaBookOpen, FaBriefcase, FaFacebookF, FaInstagram, FaMapMarkerAlt, FaQuoteLeft, FaTiktok, FaWhatsapp } from 'react-icons/fa';
 import authorPhoto from '../assets/Dolat khan.jpeg';
+
+const mediaLinks = [
+    { icon: <FaFacebookF />, label: 'Facebook', color: '#1877F2', href: 'https://www.facebook.com/share/18vdJmDF1i/' },
+    { icon: <FaInstagram />, label: 'Instagram', color: '#E1306C', href: 'https://www.instagram.com/kitabonkidolat?igsh=cTV5amZrcmV4ZjNy' },
+    { icon: <FaTiktok />, label: 'TikTok', color: '#000000', href: 'https://www.tiktok.com/@kitabon.ki.dolat?_r=1&_t=ZS-96fIBOm3b3V' },
+    { icon: <FaWhatsapp />, label: 'WhatsApp', color: '#25D366', href: 'https://wa.me/923410889909' },
+];
 
 const authorBooks = [
     {
@@ -63,6 +70,21 @@ export default function AboutAuthor() {
                             <span><FaBookOpen /> Author</span>
                             <span><FaBriefcase /> Lawyer</span>
                             <span><FaMapMarkerAlt /> Quetta, Balochistan</span>
+                        </div>
+                        <div className="about-media-links" aria-label="Author media links">
+                            {mediaLinks.map((link) => (
+                                <a
+                                    key={link.label}
+                                    href={link.href}
+                                    aria-label={link.label}
+                                    title={link.label}
+                                    style={{ '--media-color': link.color }}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {link.icon}
+                                </a>
+                            ))}
                         </div>
                     </div>
                 </div>

@@ -61,8 +61,8 @@ export default function Audiobooks() {
         return () => observer.disconnect();
     }, []);
 
-    const goToAudioCheckout = (item) => {
-        navigate(`/payment/audio/${encodeURIComponent(item.title + ' Audiobook')}/${item.price}`);
+    const goToSixMonthSubscription = () => {
+        navigate(`/payment/sub/${encodeURIComponent('Half-Yearly Subscription')}/2399`);
     };
 
     const togglePlay = (item) => {
@@ -72,20 +72,20 @@ export default function Audiobooks() {
         }
 
         if (!isSubscribed) {
-            goToAudioCheckout(item);
+            goToSixMonthSubscription();
             return;
         }
 
         setPlayingId(prev => prev === item.id ? null : item.id);
     };
 
-    const handleBuyAudio = (item) => {
+    const handleSixMonthPlan = () => {
         if (!isLoggedIn) {
             openAuthModal();
             return;
         }
 
-        goToAudioCheckout(item);
+        goToSixMonthSubscription();
     };
 
     return (
@@ -147,14 +147,15 @@ export default function Audiobooks() {
 
                             {/* Purchase */}
                             <div className="audiobook-purchase">
-                                <span className="price">Rs. {item.price.toLocaleString()}</span>
+                                <span className="price">6-Month Plan</span>
+                                <span className="audiobook-plan-note">Included with subscription</span>
                                 <button
                                     className="btn-primary"
                                     style={{ padding: '0.55rem 1.25rem', fontSize: '0.85rem' }}
                                     type="button"
-                                    onClick={() => handleBuyAudio(item)}
+                                    onClick={handleSixMonthPlan}
                                 >
-                                    Buy Now
+                                    Get Access
                                 </button>
                             </div>
                         </div>

@@ -12,10 +12,12 @@ import {
 } from "react-icons/fa";
 import { books } from "../data/booksData";
 import BookActionButtons from "./library/BookActionButtons";
+import { useAuth } from "../context/AuthContext";
 
 export default function BookDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { isLoggedIn, openAuthModal } = useAuth();
   const book = Object.values(books).find(
     (item) => String(item?.id) === String(id),
   );
@@ -37,7 +39,11 @@ export default function BookDetail() {
   }
 
   const handleBuyHardCopy = () => {
-    // Route as 'book' for Cash on Delivery / Bank / EasyPaisa
+    if (!isLoggedIn) {
+      openAuthModal();
+      return;
+    }
+
     navigate(
       `/payment/book/${encodeURIComponent(book.title + " (Hard Copy)")}/${book.printPrice}`,
     );
@@ -157,7 +163,7 @@ export default function BookDetail() {
                     </li>
                   </ul>
                   <button className="btn-buy-now" onClick={handleBuyHardCopy}>
-                    Buy Hard Copy
+                    {isLoggedIn ? "Buy Hard Copy" : "Sign In to Buy"}
                   </button>
                 </div>
 

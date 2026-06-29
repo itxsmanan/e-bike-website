@@ -19,6 +19,7 @@ import SubscriptionPlans from "./components/SubscriptionPlans";
 import Footer from "./components/Footer";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 import BookDetail from "./components/BookDetail";
+import BookReader from "./components/BookReader";
 import EventDetail from "./components/EventDetail";
 import CheckoutPage from "./pages/CheckoutPage";
 import StaticPage from "./components/StaticPage";
@@ -37,6 +38,21 @@ function AppOverlays() {
     <>
       {showAuthModal && <AuthModal />}
       {showSubGate   && <SubscriptionGate />}
+    </>
+  );
+}
+
+function AppShell() {
+  const location = useLocation();
+  const isReader = location.pathname.startsWith("/reader/");
+
+  if (isReader) return null;
+
+  return (
+    <>
+      <BookSplash />
+      <Navbar />
+      <WhatsAppFloat />
     </>
   );
 }
@@ -94,13 +110,12 @@ function App() {
       <LibraryProvider>
         <BrowserRouter>
           {/* Always-visible app shell */}
-          <BookSplash />
-          <Navbar />
-          <WhatsAppFloat />
+          <AppShell />
           <Routes>
             <Route path="/"                                 element={<HomeLayout />} />
             <Route path="/library"                          element={<LibraryPage />} />
             <Route path="/book/:id"                         element={<BookDetail />} />
+            <Route path="/reader/:id"                       element={<BookReader />} />
             <Route path="/event/:id"                        element={<EventDetail />} />
             <Route path="/payment/:type/:itemName/:price"   element={<CheckoutPage />} />
 
